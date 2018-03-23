@@ -24,5 +24,29 @@ namespace ID_Card_Maker
         {
             InitializeComponent();
         }
+
+        private void NameFirst_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(NameFirst.Text == "First Name")
+            {
+                NameFirst.SelectAll();
+            }
+        }
+
+        private void NameLast_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (NameLast.Text == "Last Name")
+            {
+                NameLast.SelectAll();
+            }
+        }
+
+        private void JobDescription_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (JobDescription.Text == "Last Name")
+            {
+                JobDescription.SelectAll();
+            }
+        }
     }
 }
