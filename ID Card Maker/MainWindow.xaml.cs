@@ -25,28 +25,20 @@ namespace ID_Card_Maker
             InitializeComponent();
         }
 
-        private void NameFirst_TextChanged(object sender, TextChangedEventArgs e)
+        private void NameFirst_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if(NameFirst.Text == "First Name")
-            {
-                NameFirst.SelectAll();
-            }
+
+            NameFirst.SelectAll();
         }
 
-        private void NameLast_TextChanged(object sender, TextChangedEventArgs e)
+        private void NameLast_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (NameLast.Text == "Last Name")
-            {
-                NameLast.SelectAll();
-            }
+            NameLast.SelectAll();
         }
 
-        private void JobDescription_TextChanged(object sender, TextChangedEventArgs e)
+        private void JobDescription_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (JobDescription.Text == "Last Name")
-            {
-                JobDescription.SelectAll();
-            }
+            JobDescription.SelectAll();
         }
     }
 }
