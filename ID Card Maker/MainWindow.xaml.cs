@@ -20,25 +20,80 @@ namespace ID_Card_Maker
     /// </summary>
     public partial class MainWindow : Window
     {
+        Window windowDesign;
+        CardPreview cardPreviewer;
+
+        Bio person = new Bio
+        {
+            Name_First = "John",
+            Name_Last = "Doe",
+            Job_Title = "Important stuff"
+        };
+
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = person;
+            cardPreviewer = new CardPreview()
+            {
+                DataContext = person
+            };
         }
 
-        private void NameFirst_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        /// <summary>
+        /// Open a second window containing the CardPreview object
+        /// </summary>
+        private void ShowPreviewer()
         {
-
-            NameFirst.SelectAll();
+            windowDesign = new Window()
+            {
+                Title = "Print Preview",
+                SizeToContent = SizeToContent.WidthAndHeight,
+                Content = cardPreviewer,
+                ResizeMode = ResizeMode.NoResize,
+            };
+            windowDesign.Show();
         }
 
-        private void NameLast_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        /// <summary>
+        /// Open system print dialog and send it the card preview
+        /// </summary>
+        private void InvokePrint(object sender, RoutedEventArgs e)
         {
-            NameLast.SelectAll();
+            // Create a print dialog object
+            PrintDialog dialog = new PrintDialog();
+            dialog.UserPageRangeEnabled = true;
+
+            if (dialog.ShowDialog() == true)
+            {
+                // Print the card design
+                dialog.PrintVisual(cardPreviewer, "ID Card");
+            }
         }
 
-        private void JobDescription_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        /// <summary>
+        /// Either show or hide the print preview pane
+        /// </summary>
+        private void PreviewRequest(object sender, RoutedEventArgs e)
         {
-            JobDescription.SelectAll();
+            if ( windowDesign == null )
+            {
+                ShowPreviewer();
+                PrintPreview.Content = "Hide Preview";
+            }
+            else
+            {
+                windowDesign.Close();
+                windowDesign = null;
+                PrintPreview.Content = "Show Preview";
+            }
         }
+    }
+
+    public class Bio
+    {
+        public string Name_First { get; set; }
+        public string Name_Last { get; set; }
+        public string Job_Title { get; set; }
     }
 }

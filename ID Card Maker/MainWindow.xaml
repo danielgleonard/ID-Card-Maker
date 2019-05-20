@@ -1,17 +1,16 @@
 ﻿<Window x:Class="ID_Card_Maker.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="611.941" Width="347.869" ResizeMode="CanMinimize" SizeToContent="WidthAndHeight">
+        Title="MainWindow" ResizeMode="CanMinimize"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}" Height="257" Width="506">
     <Grid>
-        <Border BorderBrush="Black" OpacityMask="Black">
-            <Grid x:Name="CardDesign" HorizontalAlignment="Center" Margin="0,30,0,0" VerticalAlignment="Bottom" Height="478" Width="301" Background="{DynamicResource {x:Static SystemColors.DesktopBrushKey}}">
-                <Image x:Name="Photo" HorizontalAlignment="Center" Height="256" Margin="0,10,0,0" VerticalAlignment="Top" Width="256" Source="C:\Users\glenn.leonard.GOLDRUSH\Pictures\Logitech Webcam\Picture 2.jpg" Stretch="Fill" Cursor="Hand"/>
-                <TextBox x:Name="NameFirst" HorizontalAlignment="Center" Height="72" Margin="10,271,10,0" TextWrapping="Wrap" Text="First Name" VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="48" Background="{x:Null}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" MouseDoubleClick="NameFirst_MouseDoubleClick"/>
-                <Rectangle Margin="0,0,0,0" VerticalAlignment="Bottom" Fill="#FFFACA35" Height="135" />
-                <TextBox x:Name="NameLast" HorizontalAlignment="Center" Height="69" Margin="10,343,10,0" TextWrapping="Wrap" Text="Last Name" VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="48" FontWeight="Bold" Background="{x:Null}" MouseDoubleClick="NameLast_MouseDoubleClick"/>
-                <TextBox x:Name="JobDescription" HorizontalAlignment="Center" Height="34" Margin="10,417,10,0" TextWrapping="Wrap" Text="Job Description" VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="18" Background="{x:Null}" MouseDoubleClick="JobDescription_MouseDoubleClick"/>
-            </Grid>
-        </Border>
-        <Button x:Name="PrintButton" Content="Print" Margin="0,10,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" />
+        <Button x:Name="PrintButton" Content="Print" Margin="0,0,10,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="InvokePrint" FontSize="16" />
+        <Button x:Name="PrintPreview" Content="Show Preview" Margin="0,0,122,10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="PreviewRequest" FontSize="16" />
+        <Label x:Name="label_NameFirst" Content="First Name:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="label_NameLast" Content="Last Name:" HorizontalAlignment="Left" Margin="10,63,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="label_JobTitle" Content="Job Title:" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <TextBox x:Name="Input_NameFirst" HorizontalAlignment="Left" Height="31" Margin="105,10,0,0" Text="{Binding Name_First, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="311" FontSize="16" MaxLines="1" AutomationProperties.LabeledBy="{Binding ElementName=label_NameFirst, Mode=OneWay}" />
+        <TextBox x:Name="Input_NameLast" HorizontalAlignment="Left" Height="31" Margin="105,63,0,0" Text="{Binding Name_Last, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="311" FontSize="16" MaxLines="1" AutomationProperties.LabeledBy="{Binding ElementName=label_NameLast, Mode=OneWay}"/>
+        <TextBox x:Name="Input_JobTitle" HorizontalAlignment="Left" Height="31" Margin="105,116,0,0" Text="{Binding Job_Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="311" FontSize="16" MaxLines="1" AutomationProperties.LabeledBy="{Binding ElementName=label_JobTitle, Mode=OneWay}"/>
     </Grid>
 </Window>
