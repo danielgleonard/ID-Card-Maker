@@ -27,7 +27,8 @@ namespace ID_Card_Maker
         {
             Name_First = "John",
             Name_Last = "Doe",
-            Job_Title = "Important stuff"
+            Job_Title = "Important stuff",
+            Photo = new BitmapImage(new Uri(@"assets/img/unkown person.png", UriKind.Relative))
         };
 
         public MainWindow()
@@ -88,6 +89,20 @@ namespace ID_Card_Maker
                 PrintPreview.Content = "Show Preview";
             }
         }
+
+        private void Btn_Photo_Click(object sender, RoutedEventArgs e)
+        {
+            PhotoTaker photoWindow = new PhotoTaker()
+            {
+                DataContext = this
+            };
+            photoWindow.Show();
+        }
+
+        private void Input_Text_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ((TextBox)sender).SelectAll();
+        }
     }
 
     public class Bio
@@ -95,5 +110,6 @@ namespace ID_Card_Maker
         public string Name_First { get; set; }
         public string Name_Last { get; set; }
         public string Job_Title { get; set; }
+        public BitmapSource Photo { get; set; }
     }
 }

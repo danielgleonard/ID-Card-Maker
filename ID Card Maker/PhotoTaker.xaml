@@ -1,0 +1,20 @@
+﻿<Window x:Class="ID_Card_Maker.PhotoTaker"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ID_Card_Maker"
+        mc:Ignorable="d"
+        Title="Take Photo" Height="450" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Grid x:Name="HolyGrid">
+        <ComboBox x:Name="ComboBox_DeviceChooser" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="236"/>
+        <Button x:Name="Button_DeviceChooser" Content="Select" HorizontalAlignment="Left" Margin="251,10,0,0" VerticalAlignment="Top" Width="103" Height="22" Click="Button_DeviceChooser_Click"/>
+        <Image x:Name="Image_Previewer" Height="340" Margin="10,37,10,0" Width="774" VerticalAlignment="Top" MouseMove="Image_Previewer_MouseMove" MouseLeftButtonDown="Image_Previewer_MouseLeftButtonDown" MouseLeftButtonUp="Image_Previewer_MouseLeftButtonUp" Stretch="None"/>
+        <Canvas x:Name="BackPanel" Height="340" Margin="10,37,10,0" Width="774" Cursor="Cross" VerticalAlignment="Top">
+            <Rectangle x:Name="selectionRectangle" Stroke="LightBlue" Fill="#220000FF" Visibility="Collapsed" />
+        </Canvas>
+        <Button x:Name="Button_Capture" Content="Capture" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="110" Height="29" Click="Button_Capture_Click" IsEnabled="False"/>
+        <Button x:Name="Button_Crop" Content="Crop" HorizontalAlignment="Left" Margin="136,0,0,10" VerticalAlignment="Bottom" Width="110" Height="29" Click="Button_Crop_Click" IsEnabled="False"/>
+
+    </Grid>
+</Window>
