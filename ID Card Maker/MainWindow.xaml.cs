@@ -61,6 +61,7 @@ namespace ID_Card_Maker
         /// </summary>
         private void InvokePrint(object sender, RoutedEventArgs e)
         {
+            PreviewRequest(sender, e);
             /*
             // Create a print dialog object
             PrintDialog dialog = new PrintDialog();

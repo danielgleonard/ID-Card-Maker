@@ -8,7 +8,7 @@
         Title="Take Photo" Height="450" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded" Closing="Window_Closing">
     <Grid x:Name="HolyGrid">
         <ComboBox x:Name="ComboBox_DeviceChooser" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="236"/>
-        <Button x:Name="Button_DeviceChooser" Content="Select" HorizontalAlignment="Left" Margin="251,10,0,0" VerticalAlignment="Top" Width="103" Height="22" Click="Button_DeviceChooser_Click"/>
+        <Button x:Name="Button_DeviceChooser" Content="Open Camera Feed" HorizontalAlignment="Left" Margin="251,10,0,0" VerticalAlignment="Top" Width="142" Height="22" Click="Button_DeviceChooser_Click"/>
         <Image x:Name="Image_Previewer" Height="340" Margin="10,37,10,0" Width="774" VerticalAlignment="Top" MouseMove="Image_Previewer_MouseMove" MouseLeftButtonDown="Image_Previewer_MouseLeftButtonDown" MouseLeftButtonUp="Image_Previewer_MouseLeftButtonUp" Stretch="None"/>
         <Canvas x:Name="BackPanel" Height="340" Margin="10,37,10,0" Width="774" Cursor="Cross" VerticalAlignment="Top">
             <Rectangle x:Name="selectionRectangle" Stroke="LightBlue" Fill="#220000FF" Visibility="Collapsed" />
