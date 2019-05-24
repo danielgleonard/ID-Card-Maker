@@ -99,17 +99,20 @@ namespace ID_Card_Maker
         void FinalFrame_NewFrame(object sender, NewFrameEventArgs eventArgs) // must be void so that it can be accessed everywhere.
                                                                              // New Frame Event Args is an constructor of a class
         {
-            this.Dispatcher.Invoke(() =>
+            try
             {
-                Bitmap bm = (Bitmap)eventArgs.Frame.Clone();
-                BitmapSource bs = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
-                    bm.GetHbitmap(),
-                    IntPtr.Zero,
-                    System.Windows.Int32Rect.Empty,
-                    BitmapSizeOptions.FromWidthAndHeight(bm.Width, bm.Height));
-                if (ready)
-                    Image_Previewer.Source = bs;
-            });
+                this.Dispatcher.Invoke(() =>
+                {
+                    Bitmap bm = (Bitmap)eventArgs.Frame.Clone();
+                    BitmapSource bs = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                        bm.GetHbitmap(),
+                        IntPtr.Zero,
+                        System.Windows.Int32Rect.Empty,
+                        BitmapSizeOptions.FromWidthAndHeight(bm.Width, bm.Height));
+                    if (ready)
+                        Image_Previewer.Source = bs;
+                });
+            } catch {} //this is bad code too
             // clone the bitmap
         }
 
@@ -139,6 +142,7 @@ namespace ID_Card_Maker
         /// </summary>
         private void Window_Closing(object sender, CancelEventArgs e)
         {
+            Button_DeviceChooser_Click(sender, null);
             if (FinalFrame.IsRunning == true)
                 FinalFrame.Stop();
             
@@ -229,6 +233,8 @@ namespace ID_Card_Maker
                 BitmapSource bs = new CroppedBitmap(Image_Previewer.Source as BitmapSource, rcFrom);
 
                 SaveImage(image:bs);
+
+                Button_DeviceChooser_Click(sender, e);
             }
         }
 
