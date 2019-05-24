@@ -74,6 +74,7 @@ namespace ID_Card_Maker
             }
             */
 
+            ArchiveData();
             Print(cardPreviewer);
         }
 
@@ -147,6 +148,39 @@ namespace ID_Card_Maker
 
                 //apply the original transform.
                 e.LayoutTransform = originalScale;
+            }
+        }
+
+        private void ArchiveData()
+        {
+            if (person.Photo.Height != 1080.1507568359375) // this is very bad code
+            {
+                string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                string filename = string.Concat(person.Name_First, "_", person.Name_Last, ".png");
+                string appdir = System.IO.Path.Combine(appdata, @"Dan Leonard\ID-Card-Maker");
+
+                SaveBitmapImageToFile(person.Photo, appdir, filename);
+            }
+        }
+
+        /// <summary>
+        /// Save Bitmap image to file
+        /// </summary>
+        /// <param name="image">The Bitmap to be saved</param>
+        /// <param name="filePath">Path to save the file</param>
+        /// <param name="fileName">Name of bitmap file</param>
+        /// <remarks>
+        /// Adapted from StackOverflow answer by Thomas Levesque
+        /// </remarks>
+        /// <see>https://stackoverflow.com/a/2900564</see>
+        public static void SaveBitmapImageToFile(BitmapSource image, string filePath, string fileName)
+        {
+            System.IO.Directory.CreateDirectory(filePath);
+            using (var fileStream = new System.IO.FileStream(filePath + '\\' + fileName, System.IO.FileMode.Create))
+            {
+                BitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(image));
+                encoder.Save(fileStream);
             }
         }
     }

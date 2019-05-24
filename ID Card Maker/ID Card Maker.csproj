@@ -27,7 +27,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <SupportUrl>https://danleonard.us</SupportUrl>
     <PublisherName>Dan Leonard</PublisherName>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -195,7 +195,9 @@
     <Resource Include="assets\img\unkown person.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\img\gold_rush.svg" />
+    <Resource Include="assets\img\gold_rush_symbols.png" />
+    <Resource Include="assets\img\gold_rush_text.png" />
+    <Resource Include="assets\img\gold_rush.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
