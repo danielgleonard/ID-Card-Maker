@@ -27,7 +27,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <SupportUrl>https://danleonard.us</SupportUrl>
     <PublisherName>Dan Leonard</PublisherName>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -92,6 +92,9 @@
     <Reference Include="AForge.Video.DirectShow">
       <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
+    <Reference Include="Emoji.Wpf, Version=0.0.0.18, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Emoji.Wpf.0.0.18-experimental\lib\net30\Emoji.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -104,6 +107,12 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Typography.GlyphLayout, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Emoji.Wpf.0.0.18-experimental\lib\net30\Typography.GlyphLayout.dll</HintPath>
+    </Reference>
+    <Reference Include="Typography.OpenFont, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Emoji.Wpf.0.0.18-experimental\lib\net30\Typography.OpenFont.dll</HintPath>
     </Reference>
     <Reference Include="WebcamCapturer.Controls.WPF, Version=1.1.1.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WebcamCapturer.Controls.WPF.1.1.1.2\lib\net472\WebcamCapturer.Controls.WPF.dll</HintPath>

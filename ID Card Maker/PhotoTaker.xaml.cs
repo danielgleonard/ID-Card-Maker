@@ -144,8 +144,14 @@ namespace ID_Card_Maker
         {
             Button_DeviceChooser_Click(sender, null);
             if (FinalFrame.IsRunning == true)
-                FinalFrame.Stop();
-            
+            {
+                try
+                {
+                    FinalFrame.Stop();
+                }
+                catch { }
+                finally { } // bad code all around
+            }
         }
 
         /// <summary>
