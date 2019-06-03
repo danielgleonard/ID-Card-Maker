@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
         xmlns:local="clr-namespace:ID_Card_Maker"
-        Title="User Information"
+        Title="ID Card Maker"
         DataContext="{Binding RelativeSource={RelativeSource Self}}" Closing="Window_Closing" >
     
     <!-- Main grid -->
@@ -22,7 +22,7 @@
             </Grid.RowDefinitions>
             
             <!-- Card preview pane -->
-            <local:CardPreview x:Name="cardPreviewer" Grid.Row="0" Margin="10" />
+            <local:CardPreview x:Name="cardPreviewer" Grid.Row="0" />
             
             <!-- Groupbox for card designs -->
             <GroupBox Grid.Row="1" Margin="10" Header="Card Design">
