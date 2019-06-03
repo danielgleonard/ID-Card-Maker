@@ -31,6 +31,9 @@ namespace ID_Card_Maker
             Photo = new BitmapImage(new Uri(@"assets/img/unkown person.png", UriKind.Relative))
         };
 
+        /// <summary>
+        /// Constructor for <code>MainWindow</code>
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
@@ -61,7 +64,6 @@ namespace ID_Card_Maker
         /// </summary>
         private void InvokePrint(object sender, RoutedEventArgs e)
         {
-            PreviewRequest(sender, e);
             /*
             // Create a print dialog object
             PrintDialog dialog = new PrintDialog();
@@ -77,38 +79,6 @@ namespace ID_Card_Maker
 
             ArchiveData();
             Print(cardPreviewer);
-        }
-
-        /// <summary>
-        /// Either show or hide the print preview pane
-        /// </summary>
-        private void PreviewRequest(object sender, RoutedEventArgs e)
-        {
-            if ( windowDesign == null )
-            {
-                ShowPreviewer();
-                PrintPreview.Content = "Hide Preview";
-            }
-            else
-            {
-                windowDesign.Close();
-                windowDesign = null;
-                PrintPreview.Content = "Show Preview";
-            }
-        }
-
-        private void Btn_Photo_Click(object sender, RoutedEventArgs e)
-        {
-            PhotoTaker photoWindow = new PhotoTaker()
-            {
-                DataContext = this
-            };
-            photoWindow.Show();
-        }
-
-        private void Input_Text_GotFocus(object sender, RoutedEventArgs e)
-        {
-            ((TextBox)sender).SelectAll();
         }
 
         /// <summary>
@@ -152,6 +122,9 @@ namespace ID_Card_Maker
             }
         }
 
+        /// <summary>
+        /// Save biodata to AppData
+        /// </summary>
         private void ArchiveData()
         {
             if (person.Photo.Height != 1080.1507568359375) // this is very bad code

@@ -16,13 +16,18 @@ using System.Windows.Shapes;
 namespace ID_Card_Maker
 {
     /// <summary>
-    /// Interaction logic for CardPreview.xaml
+    /// Interaction logic for PersonBio.xaml
     /// </summary>
-    public partial class CardPreview : UserControl
+    public partial class PersonBio : UserControl
     {
-        public CardPreview()
+        public PersonBio()
         {
             InitializeComponent();
+        }
+
+        private void Input_Text_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ((TextBox)sender).SelectAll();
         }
     }
 }

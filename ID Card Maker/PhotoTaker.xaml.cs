@@ -27,7 +27,7 @@ namespace ID_Card_Maker
     /// <summary>
     /// Interaction logic for PhotoTaker.xaml
     /// </summary>
-    public partial class PhotoTaker : Window
+    public partial class PhotoTaker : UserControl
     {
         private bool ready = false;
         private bool isDragging = false;
@@ -250,7 +250,7 @@ namespace ID_Card_Maker
         /// <param name="image">The cropped ID photo to use</param>
         private void SaveImage(BitmapSource image)
         {
-            ((MainWindow)Application.Current.MainWindow).Input_Photo.Source = image;
+            //((MainWindow)Application.Current.MainWindow).Input_Photo.Source = image;
             Image_Previewer.Source = image;
         }
     }
