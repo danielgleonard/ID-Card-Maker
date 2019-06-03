@@ -20,15 +20,12 @@ namespace ID_Card_Maker
     /// </summary>
     public partial class MainWindow : Window
     {
-        Window windowDesign;
-        CardPreview cardPreviewer;
-
         Bio person = new Bio
         {
             Name_First = "John",
             Name_Last = "Doe",
             Job_Title = "Important stuff",
-            Photo = new BitmapImage(new Uri(@"assets/img/unkown person.png", UriKind.Relative))
+            Photo = new BitmapImage(new Uri(@"Resources/img/unkown person.png", UriKind.Relative))
         };
 
         /// <summary>
@@ -38,25 +35,30 @@ namespace ID_Card_Maker
         {
             InitializeComponent();
             DataContext = person;
-            cardPreviewer = new CardPreview()
-            {
-                DataContext = person
-            };
-        }
 
-        /// <summary>
-        /// Open a second window containing the CardPreview object
-        /// </summary>
-        private void ShowPreviewer()
-        {
-            windowDesign = new Window()
+            /*
+            foreach (CardPreview.Designs design in (CardPreview.Designs[])Enum.GetValues(typeof(CardPreview.Designs)))
             {
-                //Title = "Print Preview",
-                SizeToContent = SizeToContent.WidthAndHeight,
-                Content = cardPreviewer,
-                ResizeMode = ResizeMode.NoResize,
-            };
-            windowDesign.Show();
+                RadioButton picker = new RadioButton();
+                picker.Content = design.ToString();
+
+                CardDesignChoosers.Children.Add(picker);
+            }
+            */
+
+            foreach (CardPreview.Design design in cardPreviewer.Designs)
+            {
+                RadioButtonDesign picker = new RadioButtonDesign();
+                picker.Content = design.canonical_title;
+                picker.Design = design;
+                picker.Margin = new Thickness(10);
+                RoutedEventArgs args = new RoutedEventArgs();
+                picker.Checked += new RoutedEventHandler(cardPreviewer.SetDesign);
+
+                CardDesignChoosers.Children.Add(picker);
+            }
+
+            (CardDesignChoosers.Children[1] as RadioButtonDesign).IsChecked = true;
         }
 
         /// <summary>
@@ -157,11 +159,27 @@ namespace ID_Card_Maker
                 encoder.Save(fileStream);
             }
         }
+
+        /// <summary>
+        /// Closing process for <code>MainWindow</code>
+        /// </summary>
+        /// <remarks>
+        /// Also manually terminates all running threads.
+        /// </remarks>
+        /// <seealso cref="App.wackoshutdown"/>
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            // pass close message to phototaker
+            uc_PhotoTaker.Window_Closing(sender: sender, e: e);
+
+            // kill all active threads
+            Environment.Exit(0);
+        }
     }
 
 
 
-    public class Bio
+    struct Bio
     {
         public string Name_First { get; set; }
         public string Name_Last { get; set; }

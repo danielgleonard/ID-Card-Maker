@@ -15,9 +15,9 @@
     <WarningLevel>4</WarningLevel>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
-    <PublishUrl>F:\id-card-maker\</PublishUrl>
+    <PublishUrl>\\GOLHOF-PC-0022\Software\ID-Card-Maker\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
+    <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -25,10 +25,12 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <SupportUrl>https://danleonard.us</SupportUrl>
+    <SupportUrl>https://github.com/CombustibleLemon/ID-Card-Maker</SupportUrl>
+    <ProductName>ID Card Maker</ProductName>
     <PublisherName>Dan Leonard</PublisherName>
-    <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <SuiteName>Gold Rush internal software</SuiteName>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>1.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -56,7 +58,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>assets\img\icons\gold_rush_diamond.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\img\icons\gold_rush_diamond.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>A71D4BF130C5147B019C35D683C582D0FA726B0B</ManifestCertificateThumbprint>
@@ -145,6 +147,7 @@
     <Compile Include="PersonBio.xaml.cs">
       <DependentUpon>PersonBio.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RadioButtonDesign.cs" />
     <Compile Include="TokenCacheHelper.cs" />
     <Page Include="CardPreview.xaml">
       <SubType>Designer</SubType>
@@ -161,7 +164,6 @@
     <Compile Include="CardPreview.xaml.cs">
       <DependentUpon>CardPreview.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Person.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -209,7 +211,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="assets\img\icons\gold_rush_diamond.ico" />
+    <Resource Include="Resources\img\icons\gold_rush_diamond.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -219,12 +221,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="assets\img\unkown person.png" />
+    <Resource Include="Resources\img\unkown person.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="assets\img\gold_rush_symbols.png" />
-    <Resource Include="assets\img\gold_rush_text.png" />
-    <Resource Include="assets\img\gold_rush.png" />
+    <Resource Include="Resources\img\gold_rush_text.png" />
+    <Resource Include="Resources\img\gold_rush.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

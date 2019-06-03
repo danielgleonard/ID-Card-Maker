@@ -4,16 +4,25 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ID_Card_Maker"
-      mc:Ignorable="d" >
+      mc:Ignorable="d" Cursor="No" >
     <!-- Title="Card Preview" WindowTitle="Print Preview"> -->
 
     <Grid x:Name="CardDesign" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="478" Width="301" Background="{DynamicResource {x:Static SystemColors.DesktopBrushKey}}">
-        <Image Height="98" Margin="35,10,35,0" Source="assets/img/gold_rush_text.png" VerticalAlignment="Top" Width="231"/>
-        <Image x:Name="Photo" Height="180" Margin="57,113,57,0" Stretch="Fill" Cursor="Hand" Source="{Binding Photo, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
-        <TextBox x:Name="NameFirst" Text="{Binding Name_First, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Height="54" Margin="10,298,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="36" Background="{x:Null}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" IsReadOnly="True"/>
-        <Rectangle Margin="0,0,0,0" VerticalAlignment="Bottom" Height="121" Fill="{DynamicResource GoldRush_Gold}" />
-        <TextBox x:Name="NameLast" Text="{Binding Name_Last, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Height="52" Margin="10,357,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="36" FontWeight="Bold" Background="{x:Null}" IsReadOnly="True"/>
-        <TextBox x:Name="JobDescription" Text="{Binding Job_Title, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Height="34" Margin="10,414,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="18" Background="{x:Null}" IsReadOnly="True" />
-        <Image Height="30" Margin="0" VerticalAlignment="Bottom" Source="assets/img/gold_rush_symbols.png"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Image x:Name="LogoImage" Height="98" Margin="35,10,35,0" Source="Resources/img/gold_rush_text.png" VerticalAlignment="Top" Width="231"/>
+        <Image x:Name="Photo" Height="180" Margin="57,113,57,0" Stretch="Fill" Source="{Binding Photo, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
+        <TextBox x:Name="NameFirst" Text="{Binding Name_First, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Height="54" Margin="10,298,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="36" Background="{x:Null}" Foreground="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" IsReadOnly="True" Cursor="{Binding Cursor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CardPreview}}}"/>
+        <Border x:Name="Sec2Color" Background="{DynamicResource GoldRush_Gold}" Grid.Row="1" Grid.RowSpan="3" />
+        <TextBox x:Name="NameLast" Grid.Row="1" Text="{Binding Name_Last, UpdateSourceTrigger=PropertyChanged}" Height="52" Margin="10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="36" FontWeight="Bold" Background="{x:Null}" IsReadOnly="True" Cursor="{Binding Cursor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CardPreview}}}"/>
+        <TextBox x:Name="JobDescription" Grid.Row="2" Text="{Binding Job_Title, UpdateSourceTrigger=PropertyChanged}" Height="34" Margin="10,0,10,10" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="18" Background="{x:Null}" IsReadOnly="True" Cursor="{Binding Cursor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CardPreview}}}"/>
+        <Grid x:Name="Footer" Grid.Row="3">
+            
+        </Grid>
     </Grid>
 </UserControl>

@@ -22,5 +22,6 @@
         <Button x:Name="Button_Capture" Grid.Row="2" Content="Capture" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="110" Height="29" Click="Button_Capture_Click" IsEnabled="False"/>
         <Button x:Name="Button_Crop" Grid.Row="2" Content="Crop" HorizontalAlignment="Left" Margin="136,0,0,10" VerticalAlignment="Bottom" Width="110" Height="29" Click="Button_Crop_Click" IsEnabled="False"/>
 
+        <Image x:Name="Photo" Source="{Binding Photo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Hidden"/>
     </Grid>
 </UserControl>

@@ -20,6 +20,8 @@ namespace ID_Card_Maker
                 .WithAuthority(AzureCloudInstance.AzurePublic, Tenant)
                 .Build();
             Micorosft.Graph.Templates.TokenCacheHelper.EnableSerialization(_clientApp.UserTokenCache);
+
+            wackoshutdown();
         }
 
         // Tokens for connecting to Microsoft Graph
@@ -28,5 +30,27 @@ namespace ID_Card_Maker
 
         private static IPublicClientApplication _clientApp;
         public static IPublicClientApplication PublicClientApp { get { return _clientApp; } }
+
+        /// <summary>
+        /// Ignore exceptions of type <code>TaskCanceledException</code>
+        /// </summary>
+        /// <remarks>
+        /// This assists in allowing clean app close with unclean <code>AForge</code> dlls.
+        /// Retrieved from StackOverflow answer by Marteen at
+        /// https://stackoverflow.com/a/51847601
+        /// </remarks>
+        /// <seealso cref="MainWindow.Window_Closing"/>
+        private static void wackoshutdown()
+        {
+            AppDomain currentDomain = AppDomain.CurrentDomain;
+            currentDomain.UnhandledException += new UnhandledExceptionEventHandler(
+                            (sender2, args) =>
+                            {
+                                Exception ex = (Exception)args.ExceptionObject;
+                                // unloading dragon medical one
+                                if (ex is TaskCanceledException)
+                                    return;  // ignore
+                            });
+        }
     }
 }

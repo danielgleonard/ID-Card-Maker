@@ -34,7 +34,6 @@ namespace ID_Card_Maker
         private System.Drawing.Point anchorPoint;
         private FilterInfoCollection CaptureDevice;
         private VideoCaptureDevice FinalFrame;
-        private Bio person;
 
         private MouseButtonEventHandler mouseEvent_ButtonDown;
         private MouseEventHandler mouseEvent_Move;
@@ -140,17 +139,22 @@ namespace ID_Card_Maker
         /// <summary>
         /// Event handler for closing of <code>PhotoTaker</code> window
         /// </summary>
-        private void Window_Closing(object sender, CancelEventArgs e)
+        public void Window_Closing(object sender, CancelEventArgs e)
         {
             Button_DeviceChooser_Click(sender, null);
             if (FinalFrame.IsRunning == true)
             {
                 try
                 {
-                    FinalFrame.Stop();
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        FinalFrame.Stop();
+                    });
                 }
-                catch { }
-                finally { } // bad code all around
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.ToString());
+                }
             }
         }
 
@@ -238,7 +242,7 @@ namespace ID_Card_Maker
                 rcFrom.Height = rcFrom.Width;  
                 BitmapSource bs = new CroppedBitmap(Image_Previewer.Source as BitmapSource, rcFrom);
 
-                SaveImage(image:bs);
+                SaveImage(image: bs);
 
                 Button_DeviceChooser_Click(sender, e);
             }
@@ -251,6 +255,7 @@ namespace ID_Card_Maker
         private void SaveImage(BitmapSource image)
         {
             //((MainWindow)Application.Current.MainWindow).Input_Photo.Source = image;
+            Photo.Source = image;
             Image_Previewer.Source = image;
         }
     }

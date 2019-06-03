@@ -4,7 +4,7 @@
         xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
         xmlns:local="clr-namespace:ID_Card_Maker"
         Title="User Information"
-        DataContext="{Binding RelativeSource={RelativeSource Self}}" >
+        DataContext="{Binding RelativeSource={RelativeSource Self}}" Closing="Window_Closing" >
     
     <!-- Main grid -->
     <Grid>
@@ -22,11 +22,11 @@
             </Grid.RowDefinitions>
             
             <!-- Card preview pane -->
-            <local:CardPreview Grid.Row="0" Margin="10" />
+            <local:CardPreview x:Name="cardPreviewer" Grid.Row="0" Margin="10" />
             
             <!-- Groupbox for card designs -->
             <GroupBox Grid.Row="1" Margin="10" Header="Card Design">
-                <UniformGrid x:Name="CardDesignChoosers">
+                <UniformGrid x:Name="CardDesignChoosers" Columns="3">
                     
                 </UniformGrid>
             </GroupBox>
@@ -60,10 +60,10 @@
             </Grid.RowDefinitions>
 
             <GroupBox Header="Biodata" Grid.Row="0" Margin="10">
-                <local:PersonBio />
+                <local:PersonBio x:Name="uc_Biodata" />
             </GroupBox>
             <GroupBox Header="Camera Controls" Grid.Row="1" Margin="10">
-                <local:PhotoTaker />
+                <local:PhotoTaker x:Name="uc_PhotoTaker" />
             </GroupBox>
         </Grid>
     </Grid>
