@@ -2,7 +2,11 @@
         xmlns:local="clr-namespace:ID_Card_Maker" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006" ShutdownMode="OnMainWindowClose">
   <Application.Resources>
         <ResourceDictionary>
-            <SolidColorBrush x:Key="GoldRush_Gold" Color="#FFFFC416"/>
+            <!-- Card design colors -->
+            <SolidColorBrush x:Key="GoldRush_Gold" Color="#FFDAB006" />
+            <SolidColorBrush x:Key="Heidner_Blue"  Color="MediumSlateBlue"  />
+            
+            <!-- person struct -->
             <local:Bio x:Key="person" >
                 <local:Bio.Name_First>John</local:Bio.Name_First>
                 <local:Bio.Name_Last >Doe</local:Bio.Name_Last>
@@ -15,6 +19,12 @@
                     </BitmapImage>
                 </local:Bio.Photo>
             </local:Bio>
+            
+            <!-- vector logos -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="Logo_Gold_Rush" Source="Resources/img/gold_rush_text_vector.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            
         </ResourceDictionary>
   </Application.Resources>
 </Application>

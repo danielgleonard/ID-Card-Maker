@@ -29,7 +29,7 @@ namespace ID_Card_Maker
         Design Visitor = new Design
         {
             canonical_title = "Visitor Pass",
-            logo = null,
+            logoref = "Visitor",
             color_bg_primary = new SolidColorBrush { Color = Colors.White },
             color_bg_secondary = new SolidColorBrush { Color = Colors.White },
             color_text_primary = new SolidColorBrush { Color = Colors.Black },
@@ -39,7 +39,7 @@ namespace ID_Card_Maker
         Design Gold_Rush = new Design
         {
             canonical_title = "Gold Rush Gaming",
-            logo = new BitmapImage(new Uri(@"Resources/img/gold_rush_text.png", UriKind.Relative)),
+            logoref = "gold_rush_text_vectorDrawingImage",
             color_bg_primary = new SolidColorBrush { Color = Colors.Black },
             color_bg_secondary = App.Current.Resources["GoldRush_Gold"] as SolidColorBrush,
             color_text_primary = new SolidColorBrush { Color = Colors.White },
@@ -49,8 +49,9 @@ namespace ID_Card_Maker
         Design Heidner_Properties = new Design
         {
             canonical_title = "Heidner Properties",
+            logoref = "Logo_Heidner",
             color_bg_primary = new SolidColorBrush { Color = Colors.White },
-            color_bg_secondary = new SolidColorBrush { Color = Colors.SkyBlue },
+            color_bg_secondary = App.Current.Resources["Heidner_Blue"] as SolidColorBrush,
             color_text_primary = new SolidColorBrush { Color = Colors.Black },
             color_text_secondary = new SolidColorBrush { Color = Colors.Black },
         };
@@ -142,7 +143,8 @@ namespace ID_Card_Maker
         }
         private void setDesign(Design design)
         {
-            LogoImage.Source = design.logo;
+            //LogoImage.Source = design.logo;
+            LogoImage.SetResourceReference(Image.SourceProperty, design.logoref);
 
             // Background colors
             CardDesign.Background       = design.color_bg_primary;
@@ -167,7 +169,7 @@ namespace ID_Card_Maker
         public struct Design
         {
             public string canonical_title;
-            public ImageSource logo;
+            public string logoref;
             public Brush color_bg_primary;
             public Brush color_bg_secondary;
             public Brush color_text_primary;

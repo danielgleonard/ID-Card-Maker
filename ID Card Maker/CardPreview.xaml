@@ -16,7 +16,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Image x:Name="LogoImage" Height="98" Margin="35,10,35,0" Source="Resources/img/gold_rush_text.png" VerticalAlignment="Top" Width="231"/>
+        <Image x:Name="LogoImage" Height="98" Margin="35,10,35,0" Source="{DynamicResource gold_rush_text_vectorDrawingImage}" VerticalAlignment="Top" Width="231"/>
         <Image x:Name="Photo" Height="180" Margin="57,113,57,0" Stretch="Fill" Source="{Binding Source={StaticResource person}, Path=Photo, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
         <!--<TextBox x:Name="NameFirst"         Grid.Row="0" Text="{Binding Name_First, UpdateSourceTrigger=PropertyChanged}" Height="54" Margin="10,298,10,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="36" Background="{x:Null}" FontWeight="Normal" IsReadOnly="True" Cursor="{Binding Cursor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CardPreview}}}" IsTabStop="False" Focusable="False"/>-->
         <Label x:Name="NameFirst"       Grid.Row="0" Content="{Binding Source={StaticResource person}, Path=Name_First, UpdateSourceTrigger=PropertyChanged, diag:PresentationTraceSources.TraceLevel=High}" Height="54"  Margin="10,298,10,0"  VerticalAlignment="Top" Width="281" BorderThickness="0"  FontSize="36" Background="{x:Null}" FontWeight="Normal"    />
