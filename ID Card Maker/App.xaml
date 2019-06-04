@@ -22,7 +22,8 @@
             
             <!-- vector logos -->
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary x:Name="Logo_Gold_Rush" Source="Resources/img/gold_rush_text_vector.xaml"/>
+                <ResourceDictionary x:Name="Logo_Gold_Rush" Source="Resources/img/logos/goldrush/gold_rush_text_vector.xaml" />
+                <ResourceDictionary x:Name="Visitor" Source="Resources/img/visitor/visitor_text.xaml" />
             </ResourceDictionary.MergedDictionaries>
             
         </ResourceDictionary>

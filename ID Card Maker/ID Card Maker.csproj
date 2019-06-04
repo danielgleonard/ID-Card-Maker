@@ -176,7 +176,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\img\gold_rush_text_vector.xaml">
+    <Page Include="Resources\img\logos\goldrush\gold_rush_text_vector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\img\visitor\visitor_text.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -228,11 +232,14 @@
     <Resource Include="Resources\img\unkown person.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\img\gold_rush_text.png" />
-    <Resource Include="Resources\img\gold_rush.png" />
+    <Resource Include="Resources\img\logos\goldrush\gold_rush_text.png" />
+    <Resource Include="Resources\img\logos\goldrush\gold_rush.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\img\logos\heidner\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
