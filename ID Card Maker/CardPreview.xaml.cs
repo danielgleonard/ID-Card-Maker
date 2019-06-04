@@ -31,7 +31,7 @@ namespace ID_Card_Maker
             canonical_title = "Visitor Pass",
             logoref = "visitor_textDrawingImage",
             color_bg_primary = new SolidColorBrush { Color = Colors.White },
-            color_bg_secondary = new SolidColorBrush { Color = Colors.White },
+            color_bg_secondary = new SolidColorBrush { Color = Colors.LightGray },
             color_text_primary = new SolidColorBrush { Color = Colors.Black },
             color_text_secondary = new SolidColorBrush { Color = Colors.Black },
         };

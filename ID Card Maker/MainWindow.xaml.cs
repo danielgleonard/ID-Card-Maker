@@ -135,7 +135,7 @@ namespace ID_Card_Maker
             if (person.Photo.Height != 1080.1507568359375) // this is very bad code
             {
                 string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                string filename = null;//string.Concat(person.Name_First, "_", person.Name_Last, ".png");
+                string filename = string.Concat(person.Name_First, "_", person.Name_Last, ".png");
                 string appdir = System.IO.Path.Combine(appdata, @"Dan Leonard\ID-Card-Maker");
 
                 SaveBitmapImageToFile(person.Photo, appdir, filename);

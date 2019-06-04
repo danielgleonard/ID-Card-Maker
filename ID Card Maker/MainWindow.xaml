@@ -47,7 +47,7 @@
                 <RowDefinition Height="337*" />
             </Grid.RowDefinitions>
 
-            <GroupBox Header="{Binding Source={StaticResource person}, Path=Job_Title}" Grid.Row="0" Margin="10">
+            <GroupBox Header="Biodata" Grid.Row="0" Margin="10">
                 <local:PersonBio x:Name="uc_Biodata" />
             </GroupBox>
             <GroupBox Header="Camera Controls" Grid.Row="1" Margin="10">
