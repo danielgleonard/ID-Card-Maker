@@ -20,6 +20,7 @@ namespace ID_Card_Maker
     /// </summary>
     public partial class MainWindow : Window
     {
+        /*
         Bio person = new Bio
         {
             Name_First = "John",
@@ -27,6 +28,7 @@ namespace ID_Card_Maker
             Job_Title = "Important stuff",
             Photo = new BitmapImage(new Uri(@"Resources/img/unkown person.png", UriKind.Relative))
         };
+        */
 
         /// <summary>
         /// Constructor for <code>MainWindow</code>
@@ -34,7 +36,6 @@ namespace ID_Card_Maker
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = person;
 
             /*
             foreach (CardPreview.Designs design in (CardPreview.Designs[])Enum.GetValues(typeof(CardPreview.Designs)))
@@ -129,10 +130,12 @@ namespace ID_Card_Maker
         /// </summary>
         private void ArchiveData()
         {
+            Bio person = App.Current.Resources["person"] as Bio;
+
             if (person.Photo.Height != 1080.1507568359375) // this is very bad code
             {
                 string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-                string filename = string.Concat(person.Name_First, "_", person.Name_Last, ".png");
+                string filename = null;//string.Concat(person.Name_First, "_", person.Name_Last, ".png");
                 string appdir = System.IO.Path.Combine(appdata, @"Dan Leonard\ID-Card-Maker");
 
                 SaveBitmapImageToFile(person.Photo, appdir, filename);
@@ -179,11 +182,17 @@ namespace ID_Card_Maker
 
 
 
-    struct Bio
+    public class Bio
     {
-        public string Name_First { get; set; }
-        public string Name_Last { get; set; }
-        public string Job_Title { get; set; }
+        public string Name_First {
+            get;
+            set;
+        }
+        public string Name_Last  {
+            get;
+            set;
+        }
+        public string Job_Title  { get; set; }
         public BitmapSource Photo { get; set; }
     }
 }

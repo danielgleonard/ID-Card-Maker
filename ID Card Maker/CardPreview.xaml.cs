@@ -144,13 +144,16 @@ namespace ID_Card_Maker
         {
             LogoImage.Source = design.logo;
 
-            CardDesign.Background = design.color_bg_primary;
-            Sec2Color.Background = design.color_bg_secondary;
+            // Background colors
+            CardDesign.Background       = design.color_bg_primary;
+            Sec2Color.Background        = design.color_bg_secondary;
 
-            NameFirst.Foreground = design.color_text_primary;
-            NameLast.Foreground = design.color_text_secondary;
-            JobDescription.Foreground = design.color_text_secondary;
+            // Text colors
+            NameFirst.Foreground        = design.color_text_primary;
+            NameLast.Foreground         = design.color_text_secondary;
+            JobDescription.Foreground   = design.color_text_secondary;
 
+            // Clear footer and add new one if present
             Footer.Children.Clear();
             if (design.footer != null)
             {

@@ -1,7 +1,20 @@
-<Application x:Class="ID_Card_Maker.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" StartupUri="MainWindow.xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006" ShutdownMode="OnMainWindowClose">
+<Application x:Class="ID_Card_Maker.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" StartupUri="MainWindow.xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d"
+        xmlns:local="clr-namespace:ID_Card_Maker" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006" ShutdownMode="OnMainWindowClose">
   <Application.Resources>
         <ResourceDictionary>
             <SolidColorBrush x:Key="GoldRush_Gold" Color="#FFFFC416"/>
+            <local:Bio x:Key="person" >
+                <local:Bio.Name_First>John</local:Bio.Name_First>
+                <local:Bio.Name_Last >Doe</local:Bio.Name_Last>
+                <local:Bio.Job_Title >Important work</local:Bio.Job_Title>
+                <local:Bio.Photo>
+                    <BitmapImage>
+                        <BitmapImage.UriSource>
+                            Resources/img/unkown person.png
+                        </BitmapImage.UriSource>
+                    </BitmapImage>
+                </local:Bio.Photo>
+            </local:Bio>
         </ResourceDictionary>
   </Application.Resources>
 </Application>

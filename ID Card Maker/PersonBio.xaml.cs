@@ -27,7 +27,16 @@ namespace ID_Card_Maker
 
         private void Input_Text_GotFocus(object sender, RoutedEventArgs e)
         {
-            ((TextBox)sender).SelectAll();
+            TextBox textBox = sender as TextBox;
+            textBox.SelectAll();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            BindingExpression textProperty = textBox.GetBindingExpression(TextBox.TextProperty);
+            GC.Collect();
+            textProperty.UpdateSource();
         }
     }
 }

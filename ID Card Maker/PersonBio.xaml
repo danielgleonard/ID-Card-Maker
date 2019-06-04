@@ -17,10 +17,28 @@
         </Grid.ColumnDefinitions>
         
         <Label x:Name="label_NameFirst" Grid.Column="0" Grid.Row="0" Content="First Name:" Margin="10 "/>
-        <Label x:Name="label_NameLast" Grid.Column="0" Grid.Row="1" Content="Last Name:" Margin="10" />
-        <Label x:Name="label_JobTitle" Grid.Column="0" Grid.Row="2" Content="Job Title:" Margin="10" />
-        <TextBox x:Name="Input_NameFirst" Grid.Column="1" Grid.Row="0" Margin="10" Text="{Binding Name_First, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLines="1" AutomationProperties.LabeledBy="{Binding ElementName=label_NameFirst, Mode=OneWay}" GotFocus="Input_Text_GotFocus" />
-        <TextBox x:Name="Input_NameLast" Grid.Column="1" Grid.Row="1" Margin="10" Text="{Binding Name_Last, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLines="1" AutomationProperties.LabeledBy="{Binding ElementName=label_NameLast, Mode=OneWay}" GotFocus="Input_Text_GotFocus"/>
-        <TextBox x:Name="Input_JobTitle" Grid.Column="1" Grid.Row="2" Margin="10" Text="{Binding Job_Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLines="1" AutomationProperties.LabeledBy="{Binding ElementName=label_JobTitle, Mode=OneWay}" GotFocus="Input_Text_GotFocus"/>
+        <Label x:Name="label_NameLast"  Grid.Column="0" Grid.Row="1" Content="Last Name:" Margin="10" />
+        <Label x:Name="label_JobTitle"  Grid.Column="0" Grid.Row="2" Content="Job Title:" Margin="10" />
+        <!--<TextBox x:Name="Input_NameFirst" Grid.Column="1" Grid.Row="0" Margin="10" Text="{Binding Name_First, Mode=TwoWay, UpdateSourceTrigger=Explicit}" MaxLines="1" AutomationProperties.LabeledBy="{Binding ElementName=label_NameFirst, Mode=OneWay}" GotFocus="Input_Text_GotFocus" TextChanged="TextBox_TextChanged" />
+        <TextBox x:Name="Input_NameLast"  Grid.Column="1" Grid.Row="1" Margin="10" Text="{Binding Name_Last,  Mode=TwoWay, UpdateSourceTrigger=Explicit}" MaxLines="1" AutomationProperties.LabeledBy="{Binding ElementName=label_NameLast,  Mode=OneWay}" GotFocus="Input_Text_GotFocus" TextChanged="TextBox_TextChanged" />
+        <TextBox x:Name="Input_JobTitle"  Grid.Column="1" Grid.Row="2" Margin="10" Text="{Binding Job_Title,  Mode=TwoWay, UpdateSourceTrigger=Explicit}" MaxLines="1" AutomationProperties.LabeledBy="{Binding ElementName=label_JobTitle,  Mode=OneWay}" GotFocus="Input_Text_GotFocus" TextChanged="TextBox_TextChanged" />-->
+        <TextBox x:Name="Input_NameFirst" Grid.Column="1" Grid.Row="0" Margin="10" MaxLines="1" AutomationProperties.LabeledBy="{Binding ElementName=label_NameFirst, Mode=OneWay}" GotFocus="Input_Text_GotFocus">
+            <TextBox.Text>
+                <Binding Source="{StaticResource person}" Path="Name_First" Mode="TwoWay"
+                   UpdateSourceTrigger="PropertyChanged"/>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox x:Name="Input_NameLast"  Grid.Column="1" Grid.Row="1" Margin="10" MaxLines="1" AutomationProperties.LabeledBy="{Binding ElementName=label_NameLast,  Mode=OneWay}" GotFocus="Input_Text_GotFocus">
+            <TextBox.Text>
+                <Binding Source="{StaticResource person}" Path="Name_Last" Mode="TwoWay"
+                   UpdateSourceTrigger="PropertyChanged"/>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox x:Name="Input_JobTitle"  Grid.Column="1" Grid.Row="2" Margin="10" MaxLines="1" AutomationProperties.LabeledBy="{Binding ElementName=label_JobTitle,  Mode=OneWay}" GotFocus="Input_Text_GotFocus">
+            <TextBox.Text>
+                <Binding Source="{StaticResource person}" Path="Job_Title" Mode="TwoWay"
+                   UpdateSourceTrigger="PropertyChanged"/>
+            </TextBox.Text>
+        </TextBox>
     </Grid>
 </UserControl>
