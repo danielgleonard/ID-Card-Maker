@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ID_Card_Maker"
       xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
-      mc:Ignorable="d" Cursor="No">
+      mc:Ignorable="d" Cursor="No"  Height="478" Width="301">
     <!-- Title="Card Preview" WindowTitle="Print Preview"> -->
 
-    <Grid x:Name="CardDesign" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="478" Width="301">
+    <Grid x:Name="CardDesign" Margin="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
