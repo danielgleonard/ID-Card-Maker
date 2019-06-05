@@ -81,7 +81,28 @@ namespace ID_Card_Maker
             */
 
             ArchiveData();
-            Print(cardPreviewer);
+            if (cardPreviewer.Footer.Children.Count != 0 )
+            {
+                try
+                {
+                    ((cardPreviewer.Footer.Children[0] as Panel).Children[0] as Label).Content =
+                    "Admitted " + DateTime.Now.ToShortDateString() + " at " + DateTime.Now.ToShortTimeString();
+                    Print(cardPreviewer);
+                    ((cardPreviewer.Footer.Children[0] as Panel).Children[0] as Label).Content = "Print Date";
+                }
+                catch (NullReferenceException ex)
+                {
+                    Console.WriteLine(ex);
+                }
+                finally
+                {
+                    Print(cardPreviewer);
+                }
+            }
+            else
+            {
+                Print(cardPreviewer);
+            }
         }
 
         /// <summary>

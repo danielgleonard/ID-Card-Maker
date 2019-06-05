@@ -25,6 +25,8 @@ namespace ID_Card_Maker
         /// Design of card
         /// </summary>
         public List<Design> Designs = new List<Design>();
+        public DateTime CurrentDateAndTime { get; set; }
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 
         Design Visitor = new Design
         {
@@ -63,11 +65,35 @@ namespace ID_Card_Maker
         {
             InitializeComponent();
 
+            Visitor.footer = footerdatesyncer();
             Gold_Rush.footer = goldrushgrid();
 
             Designs.Add(Visitor);
             Designs.Add(Gold_Rush);
             Designs.Add(Heidner_Properties);
+        }
+
+        private UniformGrid footerdatesyncer()
+        {
+            Label label = new Label
+            {
+                Content = "Print Date",
+                FontSize = 15.5,
+                FontStyle = FontStyles.Italic,
+                HorizontalAlignment = HorizontalAlignment.Stretch,
+                HorizontalContentAlignment = HorizontalAlignment.Center,
+                //ContentStringFormat = "Admitted {0:T}",
+            };
+
+            System.Windows.Controls.Primitives.UniformGrid grid = new System.Windows.Controls.Primitives.UniformGrid
+            {
+                Columns = 1,
+                Rows = 1
+            };
+
+            grid.Children.Add(label);
+
+            return grid;
         }
 
         private UniformGrid goldrushgrid()

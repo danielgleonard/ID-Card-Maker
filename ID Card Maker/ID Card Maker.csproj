@@ -144,6 +144,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CurrentDateAndTime.cs" />
     <Compile Include="PersonBio.xaml.cs">
       <DependentUpon>PersonBio.xaml</DependentUpon>
     </Compile>

@@ -10,23 +10,24 @@
 
     <Grid x:Name="CardDesign" Margin="0">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="108" />
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Image x:Name="LogoImage" Height="98" Margin="10,10,10,0" VerticalAlignment="Top" Source="Resources/img/icons/gold_rush_diamond.ico"/>
-        <Image x:Name="Photo" Height="180" Margin="57,113,57,0" Stretch="Fill" Source="{Binding Source={StaticResource person}, Path=Photo, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
+        <Image x:Name="LogoImage" Source="Resources/img/icons/gold_rush_diamond.ico" AutomationProperties.Name="ID Card Header Image" Margin="10" VerticalAlignment="Center" />
+        <Image x:Name="Photo" Height="180" Margin="57,0" Stretch="Fill" Source="{Binding Source={StaticResource person}, Path=Photo, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Grid.Row="1"/>
         <!--<TextBox x:Name="NameFirst"         Grid.Row="0" Text="{Binding Name_First, UpdateSourceTrigger=PropertyChanged}" Height="54" Margin="10,298,10,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="36" Background="{x:Null}" FontWeight="Normal" IsReadOnly="True" Cursor="{Binding Cursor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CardPreview}}}" IsTabStop="False" Focusable="False"/>-->
-        <Label x:Name="NameFirst"       Grid.Row="0" Content="{Binding Source={StaticResource person}, Path=Name_First, UpdateSourceTrigger=PropertyChanged, diag:PresentationTraceSources.TraceLevel=High}" Height="54"  Margin="10,298,10,0"  VerticalAlignment="Top" Width="281" BorderThickness="0"  FontSize="36" Background="{x:Null}" FontWeight="Normal"    />
-        <Border x:Name="Sec2Color" Background="{DynamicResource GoldRush_Gold}" Grid.Row="1" Grid.RowSpan="3" />
+        <Label x:Name="NameFirst"       Grid.Row="1" Content="{Binding Source={StaticResource person}, Path=Name_First, UpdateSourceTrigger=PropertyChanged, diag:PresentationTraceSources.TraceLevel=High}"  Margin="10,187.692,10,0"  VerticalAlignment="Top" Width="281" BorderThickness="0"  FontSize="36" Background="{x:Null}" FontWeight="Normal"    />
+        <Border x:Name="Sec2Color" Background="{DynamicResource GoldRush_Gold}" Grid.Row="2" Grid.RowSpan="3" />
         <!--<TextBox x:Name="NameLast"          Grid.Row="1" Text="{Binding Name_Last,  UpdateSourceTrigger=PropertyChanged}" Height="52" Margin="10,0"         TextWrapping="Wrap" VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="36" Background="{x:Null}" FontWeight="Bold"   IsReadOnly="True" Cursor="{Binding Cursor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CardPreview}}}" IsTabStop="False" Focusable="False"/>-->
-        <Label x:Name="NameLast"        Grid.Row="1" Content="{Binding Source={StaticResource person}, Path=Name_Last,  UpdateSourceTrigger=PropertyChanged, diag:PresentationTraceSources.TraceLevel=High}" Height="52" Margin="10,0"          VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="36" Background="{x:Null}" FontWeight="Bold"       />
+        <Label x:Name="NameLast"        Grid.Row="2" Content="{Binding Source={StaticResource person}, Path=Name_Last,  UpdateSourceTrigger=PropertyChanged, diag:PresentationTraceSources.TraceLevel=High}" Margin="10,0"          VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="36" Background="{x:Null}" FontWeight="Bold"       />
         <!--<TextBox x:Name="JobDescription"    Grid.Row="2" Text="{Binding Job_Title,  UpdateSourceTrigger=PropertyChanged}" Height="34" Margin="10,5"         TextWrapping="Wrap" VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="18" Background="{x:Null}" FontWeight="Normal" IsReadOnly="True" Cursor="{Binding Cursor, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CardPreview}}}" IsTabStop="False" Focusable="False"/>-->
-        <Label x:Name="JobDescription"  Grid.Row="2" Content="{Binding Source={StaticResource person}, Path=Job_Title,  UpdateSourceTrigger=PropertyChanged, diag:PresentationTraceSources.TraceLevel=High}" Height="34" Margin="10,5"          VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="18" Background="{x:Null}" FontWeight="Normal"     />
-        <Grid x:Name="Footer" Grid.Row="3">
-            
+        <Label x:Name="JobDescription"  Grid.Row="3" Content="{Binding Source={StaticResource person}, Path=Job_Title,  UpdateSourceTrigger=PropertyChanged, diag:PresentationTraceSources.TraceLevel=High}" Margin="10,0"          VerticalAlignment="Top" Width="281" BorderThickness="0" FontSize="18" Background="{x:Null}" FontWeight="Normal"     />
+        <Grid x:Name="Footer" Grid.Row="4">
+
         </Grid>
     </Grid>
 </UserControl>
