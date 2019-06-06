@@ -145,10 +145,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CurrentDateAndTime.cs" />
+    <Compile Include="MenuItemExtensions.cs" />
     <Compile Include="PersonBio.xaml.cs">
       <DependentUpon>PersonBio.xaml</DependentUpon>
     </Compile>
     <Compile Include="RadioButtonDesign.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="TokenCacheHelper.cs" />
     <Page Include="CardPreview.xaml">
       <SubType>Designer</SubType>

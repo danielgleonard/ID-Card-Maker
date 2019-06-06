@@ -8,51 +8,64 @@
         Title="ID Card Maker"
         DataContext="" Closing="Window_Closing" >
 
-    <!-- Main grid -->
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition MinWidth="560" />
-        </Grid.ColumnDefinitions>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem x:Name="MenuItem_Settings" Header="_Settings">
+                <MenuItem x:Name="MenuItem_Settings_Default" Header="_Default design">
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="MenuItem_Help" Header="_Help">
+                <MenuItem x:Name="MenuItem_Help_About" Header="_About" />
+                <MenuItem x:Name="MenuItem_Help_Report" Header="_Report Issues" />
+            </MenuItem>
+        </Menu>
+        
+        <!-- Main grid -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition MinWidth="560" />
+            </Grid.ColumnDefinitions>
 
-        <!-- Grid within left column, design controls -->
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
+            <!-- Grid within left column, design controls -->
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-            <!-- Card preview pane -->
-            <local:CardPreview x:Name="cardPreviewer" Grid.Row="0" />
+                <!-- Card preview pane -->
+                <local:CardPreview x:Name="cardPreviewer" Grid.Row="0" />
 
-            <!-- Groupbox for card designs -->
-            <GroupBox Grid.Row="1" Margin="10" Header="Card Design">
-                <UniformGrid x:Name="CardDesignChoosers" Columns="3"/>
-            </GroupBox>
+                <!-- Groupbox for card designs -->
+                <GroupBox Grid.Row="1" Margin="10" Header="Card Design">
+                    <UniformGrid x:Name="CardDesignChoosers" Columns="3"/>
+                </GroupBox>
 
-            <Button x:Name="PrintButton" Grid.Row="2" Margin="0" Click="InvokePrint" Width="101" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <emoji:TextBlock TextAlignment="Center">
-                    <Run Text="🖨"/>
-                    <LineBreak/>
-                    <Run Text="Print"/>
-                </emoji:TextBlock>
-            </Button>
+                <Button x:Name="PrintButton" Grid.Row="2" Margin="0" Click="InvokePrint" Width="101" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <emoji:TextBlock TextAlignment="Center">
+                        <Run Text="🖨"/>
+                        <LineBreak/>
+                        <Run Text="Print"/>
+                    </emoji:TextBlock>
+                </Button>
+            </Grid>
+
+            <!-- Grid within right column, data controls -->
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200" />
+                    <RowDefinition Height="337*" />
+                </Grid.RowDefinitions>
+
+                <GroupBox Header="Biodata" Grid.Row="0" Margin="10">
+                    <local:PersonBio x:Name="uc_Biodata" />
+                </GroupBox>
+                <GroupBox Header="Camera Controls" Grid.Row="1" Margin="10">
+                    <local:PhotoTaker x:Name="uc_PhotoTaker" />
+                </GroupBox>
+            </Grid>
         </Grid>
-
-        <!-- Grid within right column, data controls -->
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="200" />
-                <RowDefinition Height="337*" />
-            </Grid.RowDefinitions>
-
-            <GroupBox Header="Biodata" Grid.Row="0" Margin="10">
-                <local:PersonBio x:Name="uc_Biodata" />
-            </GroupBox>
-            <GroupBox Header="Camera Controls" Grid.Row="1" Margin="10">
-                <local:PhotoTaker x:Name="uc_PhotoTaker" />
-            </GroupBox>
-        </Grid>
-    </Grid>
+    </DockPanel>
 </Window>

@@ -49,6 +49,7 @@ namespace ID_Card_Maker
 
             foreach (CardPreview.Design design in cardPreviewer.Designs)
             {
+                // add designs to radio buttons
                 RadioButtonDesign picker = new RadioButtonDesign();
                 picker.Content = design.canonical_title;
                 picker.Design = design;
@@ -57,6 +58,18 @@ namespace ID_Card_Maker
                 picker.Checked += new RoutedEventHandler(cardPreviewer.SetDesign);
 
                 CardDesignChoosers.Children.Add(picker);
+
+
+
+                // add settings options to menu bar
+                MenuItem menuItem = new MenuItem
+                {
+                    Header = "_" + design.canonical_title,
+                    IsCheckable = true,
+                };
+                MenuItemExtensions.SetGroupName(menuItem, "Settings_Default");
+
+                MenuItem_Settings_Default.Items.Add(menuItem);
             }
 
             (CardDesignChoosers.Children[1] as RadioButtonDesign).IsChecked = true;
@@ -87,14 +100,16 @@ namespace ID_Card_Maker
                 {
                     ((cardPreviewer.Footer.Children[0] as Panel).Children[0] as Label).Content =
                     "Admitted " + DateTime.Now.ToShortDateString() + " at " + DateTime.Now.ToShortTimeString();
+
                     Print(cardPreviewer);
+
                     ((cardPreviewer.Footer.Children[0] as Panel).Children[0] as Label).Content = "Print Date";
                 }
                 catch (NullReferenceException ex)
                 {
                     Console.WriteLine(ex);
                 }
-                finally
+                catch (Exception ex)
                 {
                     Print(cardPreviewer);
                 }

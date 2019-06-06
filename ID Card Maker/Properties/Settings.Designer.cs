@@ -22,5 +22,17 @@ namespace ID_Card_Maker.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public uint Design {
+            get {
+                return ((uint)(this["Design"]));
+            }
+            set {
+                this["Design"] = value;
+            }
+        }
     }
 }
