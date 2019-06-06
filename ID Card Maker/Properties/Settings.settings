@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ID_Card_Maker.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Design" Type="System.UInt32" Scope="User">
+    <Setting Name="Design" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>

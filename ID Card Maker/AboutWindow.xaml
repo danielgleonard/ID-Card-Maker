@@ -1,0 +1,20 @@
+﻿<Window x:Class="ID_Card_Maker.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ID_Card_Maker"
+        mc:Ignorable="d"
+        Title="About" Height="212.37" Width="280.769" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="ID Card Maker" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource {x:Static SystemParameters.CursorWidthKey}}" />
+        <Label Grid.Row="1" Content="Dan Leonard" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+    </Grid>
+</Window>

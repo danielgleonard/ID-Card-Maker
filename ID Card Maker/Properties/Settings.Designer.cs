@@ -26,9 +26,9 @@ namespace ID_Card_Maker.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public uint Design {
+        public int Design {
             get {
-                return ((uint)(this["Design"]));
+                return ((int)(this["Design"]));
             }
             set {
                 this["Design"] = value;

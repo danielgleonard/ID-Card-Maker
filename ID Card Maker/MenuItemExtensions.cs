@@ -25,21 +25,6 @@ namespace ID_Card_Maker
                                          typeof(MenuItemExtensions),
                                          new PropertyMetadata(String.Empty, OnGroupNameChanged));
 
-        public static readonly DependencyProperty DesignProperty =
-            DependencyProperty.RegisterAttached("Design",
-                                         typeof(CardPreview.Design),
-                                         typeof(MenuItemExtensions),
-                                         new PropertyMetadata(null, OnDesignChanged));
-
-        public static void SetDesign(MenuItem element, CardPreview.Design design)
-        {
-            element.SetValue(DesignProperty, design);
-        }
-        public static String GetDesign(MenuItem element)
-        {
-            return element.GetValue(DesignProperty).ToString();
-        }
-
         public static void SetGroupName(MenuItem element, String value)
         {
             element.SetValue(GroupNameProperty, value);
@@ -51,36 +36,6 @@ namespace ID_Card_Maker
         }
 
         private static void OnGroupNameChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            //Add an entry to the group name collection
-            var menuItem = d as MenuItem;
-
-            if (menuItem != null)
-            {
-                String newGroupName = e.NewValue.ToString();
-                String oldGroupName = e.OldValue.ToString();
-                if (String.IsNullOrEmpty(newGroupName))
-                {
-                    //Removing the toggle button from grouping
-                    RemoveCheckboxFromGrouping(menuItem);
-                }
-                else
-                {
-                    //Switching to a new group
-                    if (newGroupName != oldGroupName)
-                    {
-                        if (!String.IsNullOrEmpty(oldGroupName))
-                        {
-                            //Remove the old group mapping
-                            RemoveCheckboxFromGrouping(menuItem);
-                        }
-                        ElementToGroupNames.Add(menuItem, e.NewValue.ToString());
-                        menuItem.Click += MenuItemClicked;
-                    }
-                }
-            }
-        }
-        private static void OnDesignChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             //Add an entry to the group name collection
             var menuItem = d as MenuItem;
@@ -127,6 +82,10 @@ namespace ID_Card_Maker
         /// </remarks>
         static void MenuItemClicked(object sender, RoutedEventArgs e)
         {
+            MenuItem i = (MenuItem)sender;
+            MenuItem parent = (MenuItem)i.Parent;
+            int index = parent.Items.IndexOf(i);
+
             var menuItem = e.OriginalSource as MenuItem;
             if (menuItem.IsChecked)
             {
@@ -137,6 +96,8 @@ namespace ID_Card_Maker
                         item.Key.IsChecked = false;
                     }
                 }
+
+                Properties.Settings.Default.Design = index;
             }
             else // it's not possible for the user to deselect an item
             {

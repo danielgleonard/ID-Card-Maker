@@ -15,8 +15,8 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem x:Name="MenuItem_Help" Header="_Help">
-                <MenuItem x:Name="MenuItem_Help_About" Header="_About" />
-                <MenuItem x:Name="MenuItem_Help_Report" Header="_Report Issues" />
+                <MenuItem x:Name="MenuItem_Help_About" Header="_About" Click="MenuItem_Help_About_Click" />
+                <MenuItem x:Name="MenuItem_Help_Report" Header="_Report Issues" Click="MenuItem_Help_Report_Click" />
             </MenuItem>
         </Menu>
         

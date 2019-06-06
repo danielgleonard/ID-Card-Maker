@@ -72,7 +72,10 @@ namespace ID_Card_Maker
                 MenuItem_Settings_Default.Items.Add(menuItem);
             }
 
-            (CardDesignChoosers.Children[1] as RadioButtonDesign).IsChecked = true;
+            // load from user setting
+            int setting = Properties.Settings.Default.Design;
+            (CardDesignChoosers.Children[setting] as RadioButtonDesign).IsChecked = true;
+            (MenuItem_Settings_Default.Items[setting] as MenuItem).IsChecked = true;
         }
 
         /// <summary>
@@ -208,11 +211,37 @@ namespace ID_Card_Maker
         /// <seealso cref="App.wackoshutdown"/>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            // save user settings
+            Properties.Settings.Default.Save();
+
             // pass close message to phototaker
             uc_PhotoTaker.Window_Closing(sender: sender, e: e);
 
             // kill all active threads
             Environment.Exit(0);
+        }
+
+        /// <summary>
+        /// Click handler for About button in menu bar
+        /// </summary>
+        /// <remarks>
+        /// Opens About pane
+        /// </remarks>
+        private void MenuItem_Help_About_Click(object sender, RoutedEventArgs e)
+        {
+            AboutWindow about = new AboutWindow();
+            about.Show();
+        }
+
+        /// <summary>
+        /// Click handler for Report Issues in menu bar
+        /// </summary>
+        /// <remarks>
+        /// Opens GitHub issues page for project
+        /// </remarks>
+        private void MenuItem_Help_Report_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com./CombustibleLemon/ID-Card-Maker/issues");
         }
     }
 
