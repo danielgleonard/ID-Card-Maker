@@ -20,15 +20,15 @@ namespace ID_Card_Maker
     /// </summary>
     public partial class MainWindow : Window
     {
-        /*
-        Bio person = new Bio
-        {
-            Name_First = "John",
-            Name_Last = "Doe",
-            Job_Title = "Important stuff",
-            Photo = new BitmapImage(new Uri(@"Resources/img/unkown person.png", UriKind.Relative))
-        };
-        */
+        /// <summary>
+        /// Windows user application data directory
+        /// </summary>
+        string appdata;
+        /// <summary>
+        /// Subdirectory of user application data for ID Card Maker
+        /// </summary>
+        string appdir;
+
 
         /// <summary>
         /// Constructor for <code>MainWindow</code>
@@ -37,15 +37,8 @@ namespace ID_Card_Maker
         {
             InitializeComponent();
 
-            /*
-            foreach (CardPreview.Designs design in (CardPreview.Designs[])Enum.GetValues(typeof(CardPreview.Designs)))
-            {
-                RadioButton picker = new RadioButton();
-                picker.Content = design.ToString();
-
-                CardDesignChoosers.Children.Add(picker);
-            }
-            */
+            appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            appdir = System.IO.Path.Combine(appdata, @"Dan Leonard\ID-Card-Maker");
 
             foreach (CardPreview.Design design in cardPreviewer.Designs)
             {
@@ -173,9 +166,7 @@ namespace ID_Card_Maker
 
             if (person.Photo.Height != 1080.1507568359375) // this is very bad code
             {
-                string appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
                 string filename = string.Concat(person.Name_First, "_", person.Name_Last, ".png");
-                string appdir = System.IO.Path.Combine(appdata, @"Dan Leonard\ID-Card-Maker");
 
                 SaveBitmapImageToFile(person.Photo, appdir, filename);
             }
@@ -230,7 +221,8 @@ namespace ID_Card_Maker
         private void MenuItem_Help_About_Click(object sender, RoutedEventArgs e)
         {
             AboutWindow about = new AboutWindow();
-            about.Show();
+            about.Owner = this;
+            about.ShowDialog();
         }
 
         /// <summary>
@@ -242,6 +234,11 @@ namespace ID_Card_Maker
         private void MenuItem_Help_Report_Click(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://github.com./CombustibleLemon/ID-Card-Maker/issues");
+        }
+
+        private void MenuItem_File_AppData_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(appdir);
         }
     }
 

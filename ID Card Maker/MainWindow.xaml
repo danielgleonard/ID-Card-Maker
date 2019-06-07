@@ -10,8 +10,13 @@
 
     <DockPanel>
         <Menu DockPanel.Dock="Top">
+            <MenuItem x:Name="MenuItem_File" Header="_File">
+                <MenuItem x:Name="MenuItem_File_AppData" Header="Open Photo _Log" Click="MenuItem_File_AppData_Click">
+                </MenuItem>
+            </MenuItem>
             <MenuItem x:Name="MenuItem_Settings" Header="_Settings">
-                <MenuItem x:Name="MenuItem_Settings_Default" Header="_Default design">
+                <MenuItem x:Name="MenuItem_Settings_Default" Header="_Default Design">
+                    <!-- code-behind inserts desings here -->
                 </MenuItem>
             </MenuItem>
             <MenuItem x:Name="MenuItem_Help" Header="_Help">

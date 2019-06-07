@@ -5,16 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ID_Card_Maker"
         mc:Ignorable="d"
-        Title="About" Height="212.37" Width="280.769" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+        Title="About"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        SizeToContent="WidthAndHeight"
+        ScrollViewer.VerticalScrollBarVisibility="Disabled"
+        HorizontalContentAlignment="Center"
+        VerticalContentAlignment="Center">
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="ID Card Maker" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource {x:Static SystemParameters.CursorWidthKey}}" />
-        <Label Grid.Row="1" Content="Dan Leonard" HorizontalAlignment="Center" VerticalAlignment="Center" />
-
+        <TextBlock Margin="5" Grid.Row="0" TextAlignment="Center" FontSize="{DynamicResource {x:Static SystemParameters.CursorWidthKey}}">
+            ID Card Maker
+        </TextBlock>
+        <TextBlock Margin="5" Grid.Row="1" TextAlignment="Center">
+            Licensed under the
+            <Hyperlink NavigateUri="https://www.gnu.org/licenses/gpl-3.0.html" RequestNavigate="Hyperlink_RequestNavigate">
+                GNU General Public License v3.0
+            </Hyperlink>
+            <LineBreak />
+            Source code available at
+            <Hyperlink NavigateUri="https://github.com/CombustibleLemon/ID-Card-Maker" RequestNavigate="Hyperlink_RequestNavigate">
+                GitHub
+            </Hyperlink>
+        </TextBlock>
+        <TextBlock Margin="5" Grid.Row="2" TextAlignment="Center">
+            Developed for
+            <Hyperlink NavigateUri="https://www.heidnerinc.com/" RequestNavigate="Hyperlink_RequestNavigate">
+                Heidner Properties
+            </Hyperlink>
+            and
+            <Hyperlink NavigateUri="https://www.goldrushgaming.com/" RequestNavigate="Hyperlink_RequestNavigate">
+                Gold Rush Gaming
+            </Hyperlink>
+        </TextBlock>
+        <TextBlock Margin="5" Grid.Row="3" HorizontalAlignment="Center" FontSize="{DynamicResource {x:Static SystemParameters.MenuButtonHeightKey}}">
+            by Dan Leonard
+        </TextBlock>
+        <TextBlock Margin="5" Grid.Row="4" HorizontalAlignment="Center" FontSize="10">
+            <Hyperlink NavigateUri="https://danleonard.us/" RequestNavigate="Hyperlink_RequestNavigate">
+                danleonard.us
+            </Hyperlink>
+        </TextBlock>
     </Grid>
 </Window>

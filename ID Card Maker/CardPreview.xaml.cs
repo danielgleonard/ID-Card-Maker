@@ -28,20 +28,46 @@ namespace ID_Card_Maker
         public DateTime CurrentDateAndTime { get; set; }
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
 
-        Design Visitor = new Design
+        Design Visitor_Photo = new Design
         {
-            canonical_title = "Visitor Pass",
+            canonical_title = "Visitor Pass w/ Photo",
             logoref = "visitor_textDrawingImage",
+            isPhoto = true,
             color_bg_primary = new SolidColorBrush { Color = Colors.White },
-            color_bg_secondary = new SolidColorBrush { Color = Colors.LightGray },
+            color_bg_secondary = new SolidColorBrush { Color = Colors.Gray },
             color_text_primary = new SolidColorBrush { Color = Colors.Black },
             color_text_secondary = new SolidColorBrush { Color = Colors.Black },
+        };
+
+        Design Visitor_Gold_Rush = new Design
+        {
+            canonical_title = "Visitor for Gold Rush",
+            logoref = "visitor_textDrawingImage",
+            isPhoto = false,
+            logo2ref = "gold_rush_text_vectorDrawingImage",
+            color_bg_primary = new SolidColorBrush { Color = Colors.White },
+            color_bg_secondary = new SolidColorBrush { Color = Colors.Black },
+            color_text_primary = null,
+            color_text_secondary = null,
+        };
+
+        Design Visitor_Heidner_Properties = new Design
+        {
+            canonical_title = "Visitor for Heidner Properties",
+            logoref = "visitor_textDrawingImage",
+            isPhoto = false,
+            logo2ref = "heidner_vectorDrawingImage",
+            color_bg_primary = new SolidColorBrush { Color = Colors.White },
+            color_bg_secondary = new SolidColorBrush { Color = Colors.LightGray },
+            color_text_primary = null,
+            color_text_secondary = null,
         };
 
         Design Gold_Rush = new Design
         {
             canonical_title = "Gold Rush Gaming",
             logoref = "gold_rush_text_vectorDrawingImage",
+            isPhoto = true,
             color_bg_primary = new SolidColorBrush { Color = Colors.Black },
             color_bg_secondary = App.Current.Resources["GoldRush_Gold"] as SolidColorBrush,
             color_text_primary = new SolidColorBrush { Color = Colors.White },
@@ -51,11 +77,12 @@ namespace ID_Card_Maker
         Design Heidner_Properties = new Design
         {
             canonical_title = "Heidner Properties",
-            logoref = "Logo_Heidner",
+            logoref = "heidner_vectorDrawingImage",
+            isPhoto = true,
             color_bg_primary = new SolidColorBrush { Color = Colors.White },
             color_bg_secondary = App.Current.Resources["Heidner_Blue"] as SolidColorBrush,
             color_text_primary = new SolidColorBrush { Color = Colors.Black },
-            color_text_secondary = new SolidColorBrush { Color = Colors.Black },
+            color_text_secondary = App.Current.Resources["Heidner_Gray"] as SolidColorBrush,
         };
 
         /// <summary>
@@ -65,10 +92,12 @@ namespace ID_Card_Maker
         {
             InitializeComponent();
 
-            Visitor.footer = footerdatesyncer();
+            Visitor_Photo.footer = footerdatesyncer();
             Gold_Rush.footer = goldrushgrid();
 
-            Designs.Add(Visitor);
+            Designs.Add(Visitor_Photo);
+            Designs.Add(Visitor_Gold_Rush);
+            Designs.Add(Visitor_Heidner_Properties);
             Designs.Add(Gold_Rush);
             Designs.Add(Heidner_Properties);
         }
@@ -148,7 +177,6 @@ namespace ID_Card_Maker
         /// <summary>
         /// Change design of card
         /// </summary>
-        /// <param name="design">Design to be chosen</param>
         public void SetDesign(object sender, RoutedEventArgs e)
         {
             /*
@@ -173,13 +201,39 @@ namespace ID_Card_Maker
             LogoImage.SetResourceReference(Image.SourceProperty, design.logoref);
 
             // Background colors
-            CardDesign.Background       = design.color_bg_primary;
-            Sec2Color.Background        = design.color_bg_secondary;
+            CardDesign.Background = design.color_bg_primary;
+            Sec2Color.Background = design.color_bg_secondary;
 
-            // Text colors
-            NameFirst.Foreground        = design.color_text_primary;
-            NameLast.Foreground         = design.color_text_secondary;
-            JobDescription.Foreground   = design.color_text_secondary;
+            if (design.isPhoto)
+            {
+                LogoImage2.Visibility = Visibility.Hidden;
+
+                // Text colors
+                NameFirst.Visibility = Visibility.Visible;
+                NameFirst.Foreground = design.color_text_primary;
+                NameLast.Visibility = Visibility.Visible;
+                NameLast.Foreground = design.color_text_secondary;
+                JobDescription.Visibility = Visibility.Visible;
+                JobDescription.Foreground = design.color_text_secondary;
+
+                NameFirst.Height = Double.NaN;
+            }
+            else
+            {
+                LogoImage2.Visibility = Visibility.Visible;
+
+                NameFirst.Visibility = Visibility.Hidden;
+                NameLast.Visibility = Visibility.Hidden;
+                JobDescription.Visibility = Visibility.Hidden;
+
+                NameFirst.Height = 0;
+
+                LogoImage2.SetResourceReference(Image.SourceProperty, design.logo2ref);
+
+                Bio person = App.Current.Resources["person"] as Bio;
+                Uri unknownPerson = new Uri(@"pack://application:,,,/Resources/img/unkown person.png");
+                person.Photo = new BitmapImage(unknownPerson);
+            }
 
             // Clear footer and add new one if present
             Footer.Children.Clear();
@@ -196,6 +250,8 @@ namespace ID_Card_Maker
         {
             public string canonical_title;
             public string logoref;
+            public bool isPhoto;
+            public string logo2ref;
             public Brush color_bg_primary;
             public Brush color_bg_secondary;
             public Brush color_text_primary;

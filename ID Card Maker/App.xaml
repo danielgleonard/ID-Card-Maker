@@ -4,8 +4,9 @@
         <ResourceDictionary>
             <!-- Card design colors -->
             <SolidColorBrush x:Key="GoldRush_Gold" Color="#FFDAB006" />
-            <SolidColorBrush x:Key="Heidner_Blue"  Color="MediumSlateBlue"  />
-            
+            <SolidColorBrush x:Key="Heidner_Blue"  Color="#FF232555" />
+            <SolidColorBrush x:Key="Heidner_Gray"  Color="#FFCDCDC3" />
+
             <!-- person struct -->
             <local:Bio x:Key="person" >
                 <local:Bio.Name_First>John</local:Bio.Name_First>
@@ -23,6 +24,7 @@
             <!-- vector logos -->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary x:Name="Logo_Gold_Rush" Source="Resources/img/logos/goldrush/gold_rush_text_vector.xaml" />
+                <ResourceDictionary x:Name="Logo_Heidner" Source="Resources/img/logos/heidner/heidner_vector.xaml" />
                 <ResourceDictionary x:Name="Visitor" Source="Resources/img/visitor/visitor_text.xaml" />
             </ResourceDictionary.MergedDictionaries>
             

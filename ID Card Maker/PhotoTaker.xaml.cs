@@ -236,7 +236,7 @@ namespace ID_Card_Maker
 
                 Rect rect1 = new Rect(Canvas.GetLeft(selectionRectangle), Canvas.GetTop(selectionRectangle), selectionRectangle.Width, selectionRectangle.Height);
                 System.Windows.Int32Rect rcFrom = new System.Windows.Int32Rect();
-                rcFrom.X = (int)((rect1.X) - pillarbox);
+                rcFrom.X = (int)((rect1.X) /* - pillarbox */);
                 rcFrom.Y = (int)((rect1.Y) /* - letterbox */);
                 rcFrom.Width = (int)((rect1.Width) /* * (Image_Previewer.Source.Width) / (Image_Previewer.Width) */);
                 rcFrom.Height = rcFrom.Width;  
