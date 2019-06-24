@@ -6,7 +6,10 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="ID_Card_Maker.MainWindow"
         Title="ID Card Maker"
-        DataContext="" Closing="Window_Closing" >
+        DataContext="" Closing="Window_Closing"
+        Height="Auto"
+        Width="Auto"
+    >
 
     <DockPanel>
         <Menu DockPanel.Dock="Top">
@@ -60,8 +63,8 @@
             <!-- Grid within right column, data controls -->
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="200" />
-                    <RowDefinition Height="337*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <GroupBox Header="Biodata" Grid.Row="0" Margin="10">

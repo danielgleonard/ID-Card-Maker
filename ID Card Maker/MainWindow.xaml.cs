@@ -103,10 +103,15 @@ namespace ID_Card_Maker
                 }
                 catch (NullReferenceException ex)
                 {
-                    Console.WriteLine(ex);
+#if DEBUG
+                    MessageBox.Show(ex.Message, "Exception caught", MessageBoxButton.OK, MessageBoxImage.Error);
+#endif
                 }
                 catch (Exception ex)
                 {
+#if DEBUG
+                    MessageBox.Show(ex.Message, "Exception caught", MessageBoxButton.OK, MessageBoxImage.Error);
+#endif
                     Print(cardPreviewer, 1);
                 }
             }
@@ -294,6 +299,10 @@ namespace ID_Card_Maker
             get;
             set;
         }
+        public int Height_Feet { get; set; }
+        public int Height_Inches { get; set; }
+        public int Weight { get; set; }
+        public DateTime Birthday { get; set; }
         public string Job_Title  { get; set; }
         public BitmapSource Photo { get; set; }
     }

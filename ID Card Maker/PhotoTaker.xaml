@@ -8,9 +8,9 @@
     <!--Closing="Window_Closing"-->
     <Grid x:Name="HolyGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="7*" />
-            <RowDefinition Height="2*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -18,16 +18,23 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <ComboBox x:Name="ComboBox_DeviceChooser" Grid.Column="0" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top"/>
-            <Button x:Name="Button_DeviceChooser" Grid.Column="1" Content="Open Camera Feed" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Click="Button_DeviceChooser_Click"/>
+            <ComboBox x:Name="ComboBox_DeviceChooser" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top"/>
+            <Button x:Name="Button_DeviceChooser" Grid.Row="0" Grid.Column="1" Content="Open Camera Feed" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Click="Button_DeviceChooser_Click"/>
         </Grid>
-        <Image x:Name="Image_Previewer" Grid.Row="1" Height="340" Margin="10,0" Width="774" VerticalAlignment="Top" MouseMove="Image_Previewer_MouseMove" MouseLeftButtonDown="Image_Previewer_MouseLeftButtonDown" MouseLeftButtonUp="Image_Previewer_MouseLeftButtonUp" Stretch="None"/>
+        <Image x:Name="Image_Previewer" Grid.Row="1" MinHeight="50" Height="Auto" MaxHeight="700" Margin="10,0" Width="Auto" MaxWidth="700" VerticalAlignment="Top" MouseMove="Image_Previewer_MouseMove" MouseLeftButtonDown="Image_Previewer_MouseLeftButtonDown" MouseLeftButtonUp="Image_Previewer_MouseLeftButtonUp" Stretch="None"/>
         <Canvas x:Name="BackPanel" Grid.Row="1" Height="{Binding Source.Height, ElementName=Image_Previewer, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="{Binding Margin, ElementName=Image_Previewer}" Width="{Binding Source.Width, ElementName=Image_Previewer, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Cursor="Cross" VerticalAlignment="Top">
             <Rectangle x:Name="selectionRectangle" Stroke="LightBlue" Fill="#220000FF" Visibility="Collapsed" />
         </Canvas>
-        <Button x:Name="Button_Capture" Grid.Row="2" Content="Capture" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="110" Click="Button_Capture_Click" IsEnabled="False"/>
-        <Button x:Name="Button_Crop" Grid.Row="2" Content="Crop" HorizontalAlignment="Left" Margin="136,0,0,10" VerticalAlignment="Bottom" Width="110" Click="Button_Crop_Click" IsEnabled="False"/>
-
-        <Image x:Name="Photo" Source="{Binding Photo, Mode=TwoWay, Source={StaticResource person}}" Visibility="Hidden"/>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <Button x:Name="Button_Capture" Grid.Row="0" Grid.Column="0" Margin="10" Content="Capture" Width="110" Click="Button_Capture_Click" IsEnabled="False"/>
+            <Button x:Name="Button_Crop" Grid.Row="0" Grid.Column="1" Margin="10" Content="Crop" Width="110" Click="Button_Crop_Click" IsEnabled="False"/>
+        </Grid>
+        
+        <Image x:Name="Photo" Source="{Binding Photo, Mode=TwoWay, Source={StaticResource person}}" Visibility="Hidden" Height="0" Width="0"/>
     </Grid>
 </UserControl>

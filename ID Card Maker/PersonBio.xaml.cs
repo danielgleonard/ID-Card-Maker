@@ -20,6 +20,9 @@ namespace ID_Card_Maker
     /// </summary>
     public partial class PersonBio : UserControl
     {
+        private readonly int AdditionalAttributeIndexBegin = 3;
+        private readonly int AdditionalAttributeIndexEnd = 5;
+
         public PersonBio()
         {
             InitializeComponent();
@@ -37,6 +40,24 @@ namespace ID_Card_Maker
             BindingExpression textProperty = textBox.GetBindingExpression(TextBox.TextProperty);
             GC.Collect();
             textProperty.UpdateSource();
+        }
+
+        public void ShowAdditionalAttributes()
+        {
+            
+            for (int i = AdditionalAttributeIndexBegin; i <= AdditionalAttributeIndexEnd; i++)
+            {
+                MainGrid.RowDefinitions[i].Height = GridLength.Auto;
+            }
+        }
+
+        public void HideAdditionalAttributes()
+        {
+
+            for (int i = AdditionalAttributeIndexBegin; i <= AdditionalAttributeIndexEnd; i++)
+            {
+                MainGrid.RowDefinitions[i].Height = new GridLength(0, GridUnitType.Pixel);
+            }
         }
     }
 }
