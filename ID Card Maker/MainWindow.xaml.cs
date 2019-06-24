@@ -97,7 +97,7 @@ namespace ID_Card_Maker
                     ((cardPreviewer.Footer.Children[0] as Panel).Children[0] as Label).Content =
                     "Admitted " + DateTime.Now.ToShortDateString() + " at " + DateTime.Now.ToShortTimeString();
 
-                    Print(cardPreviewer);
+                    Print(cardPreviewer, 1);
 
                     ((cardPreviewer.Footer.Children[0] as Panel).Children[0] as Label).Content = "Print Date";
                 }
@@ -107,12 +107,12 @@ namespace ID_Card_Maker
                 }
                 catch (Exception ex)
                 {
-                    Print(cardPreviewer);
+                    Print(cardPreviewer, 1);
                 }
             }
             else
             {
-                Print(cardPreviewer);
+                Print(cardPreviewer, 1);
             }
         }
 
@@ -120,7 +120,8 @@ namespace ID_Card_Maker
         /// Method for safe printing all on one page
         /// </summary>
         /// <param name="v">Visual to be printed</param>
-        private void Print(Visual v)
+        /// <param name="page">Page to be printed</param>
+        private void Print(Visual v, int page)
         {
 
             System.Windows.FrameworkElement e = v as System.Windows.FrameworkElement;
@@ -128,7 +129,46 @@ namespace ID_Card_Maker
                 return;
 
             PrintDialog pd = new PrintDialog();
-            if (pd.ShowDialog() == true)
+
+            // mandate specific page
+            pd.UserPageRangeEnabled = false;
+            pd.PageRange = new PageRange(page);
+
+            // set to id maker
+            try
+            {
+                pd.PrintQueue = new System.Printing.PrintQueue(new System.Printing.PrintServer(), Properties.Resources.PrinterName);
+            }
+            catch (Exception ex)
+            {
+#if DEBUG
+                MessageBox.Show("Exception caught during printer choosing.\r\n\r\n" +
+                                ex.Message +
+                                "\r\nCurrent printer in Properties.Resources: " +
+                                Properties.Resources.PrinterName + ".",
+                                "Exception",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+#else
+                MessageBoxResult exRes = MessageBox.Show("Ensure your " +
+                                                            Properties.Resources.PrinterName +
+                                                            " is plugged in and ready." +
+                                                            "\r\n\r\nPrint to another printer?",
+                                                            "Error printing.",
+                                                            MessageBoxButton.OKCancel,
+                                                            MessageBoxImage.Error,
+                                                            MessageBoxResult.Cancel);
+                switch (exRes)
+                {
+                    case MessageBoxResult.OK:
+                        break;
+                    case MessageBoxResult.Cancel:
+                        return;
+                }
+#endif
+            }
+
+            if (pd.ShowDialog().Value)
             {
                 //store original scale
                 Transform originalScale = e.LayoutTransform;
