@@ -256,7 +256,12 @@ namespace ID_Card_Maker
             public Brush color_bg_secondary;
             public Brush color_text_primary;
             public Brush color_text_secondary;
-            public Panel footer; 
+            public Panel footer;
+            public enum DesignType
+            {
+                Simple,
+                Complex
+            }
         }
     }
 }
