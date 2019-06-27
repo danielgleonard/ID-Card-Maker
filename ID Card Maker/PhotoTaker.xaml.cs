@@ -106,7 +106,8 @@ namespace ID_Card_Maker
 
             //new
             XYZ.Helpers.ConvertBitmapToBitmapImage cnv = new XYZ.Helpers.ConvertBitmapToBitmapImage();
-            InputImageSource = cnv.Convert(newFrame);
+            BitmapImage img = cnv.Convert(newFrame);
+            InputImageSource = img;
 
 
 
@@ -174,9 +175,32 @@ namespace ID_Card_Maker
         /// <summary>
         /// Event handler for clicking 'capture' button
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Button_Capture_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Capture();
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show(
+                    Application.Current.MainWindow,
+                    "Exception caught.\r\n" + ex.Message,
+                    "Null Reference Exception",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error,
+                    MessageBoxResult.OK
+                    );
+            }
+        }
+
+        /// <summary>
+        /// Add event handlers to HolyGrid and prepare for cropping
+        /// </summary>
+        /// <exception cref="System.NullReferenceException">
+        /// Thrown when attempting to capture image while <code>Image_Previewer.Source</code> is empty
+        /// </exception>
+        private void Capture()
         {
             if (Image_Previewer.Source != null)
             {
@@ -190,7 +214,9 @@ namespace ID_Card_Maker
                 HolyGrid.MouseLeftButtonUp += mouseEvent_ButtonUp;
             }
             else
-            { MessageBox.Show("null exception"); }
+            {
+                throw new NullReferenceException("Attempted to capture image from empty feed.");
+            }
         }
 
         #region Crop event handlers
