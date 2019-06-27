@@ -163,6 +163,7 @@
     <Compile Include="AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConvertBitmapToBitmapImage.cs" />
     <Compile Include="CurrentDateAndTime.cs" />
     <Compile Include="MenuItemExtensions.cs" />
     <Compile Include="PersonBio.xaml.cs">

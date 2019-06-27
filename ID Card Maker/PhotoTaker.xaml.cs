@@ -40,6 +40,8 @@ namespace ID_Card_Maker
         private MouseButtonEventHandler mouseEvent_ButtonUp;
         private NewFrameEventHandler frameHandler;
 
+        private ImageSource InputImageSource;
+
         /// <summary>
         /// Construct new instance of <code>PhotoTaker</code> window object
         /// </summary>
@@ -52,6 +54,8 @@ namespace ID_Card_Maker
             mouseEvent_ButtonDown = new MouseButtonEventHandler(Image_Previewer_MouseLeftButtonDown);
             mouseEvent_Move = new MouseEventHandler(Image_Previewer_MouseMove);
             mouseEvent_ButtonUp = new MouseButtonEventHandler(Image_Previewer_MouseLeftButtonUp);
+
+
         }
 
         /// <summary>
@@ -98,21 +102,30 @@ namespace ID_Card_Maker
         void FinalFrame_NewFrame(object sender, NewFrameEventArgs eventArgs) // must be void so that it can be accessed everywhere.
                                                                              // New Frame Event Args is an constructor of a class
         {
+            Bitmap newFrame = AForge.Imaging.Image.Clone(eventArgs.Frame);
+
+            //new
+            XYZ.Helpers.ConvertBitmapToBitmapImage cnv = new XYZ.Helpers.ConvertBitmapToBitmapImage();
+            InputImageSource = cnv.Convert(newFrame);
+
+
+
+            /*
             try
             {
                 this.Dispatcher.Invoke(() =>
                 {
-                    Bitmap bm = (Bitmap)eventArgs.Frame.Clone();
                     BitmapSource bs = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
-                        bm.GetHbitmap(),
+                        newFrame.GetHbitmap(),
                         IntPtr.Zero,
                         System.Windows.Int32Rect.Empty,
-                        BitmapSizeOptions.FromWidthAndHeight(bm.Width, bm.Height));
+                        BitmapSizeOptions.FromWidthAndHeight(newFrame.Width, newFrame.Height));
+                    newFrame.Dispose();
                     if (ready)
-                        Image_Previewer.Source = bs;
+                        inputImageSource = bs;
                 });
             } catch {} //this is bad code too
-            // clone the bitmap
+            */
         }
 
         /// <summary>
