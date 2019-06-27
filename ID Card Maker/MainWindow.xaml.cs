@@ -29,6 +29,8 @@ namespace ID_Card_Maker
         /// </summary>
         string appdir;
 
+        CardPreview cardPreviewer = new CardPreview();
+
 
         /// <summary>
         /// Constructor for <code>MainWindow</code>
@@ -39,6 +41,8 @@ namespace ID_Card_Maker
 
             appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             appdir = System.IO.Path.Combine(appdata, @"Dan Leonard\ID-Card-Maker");
+
+            cardPreviewViewbox.Child = cardPreviewer;
 
             foreach (CardPreview.Design design in cardPreviewer.Designs)
             {

@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="ID_Card_Maker.GoldRushGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ID_Card_Maker"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="5" />
+        </Style>
+    </UserControl.Resources>
+    
+    <UniformGrid Rows="1" Columns="4">
+        <TextBlock x:Name="goldrush_diamond">
+            ♦
+        </TextBlock>
+        <TextBlock x:Name="goldrush_heart">
+            ♥
+        </TextBlock>
+        <TextBlock x:Name="goldrush_spade">
+            ♠
+        </TextBlock>
+        <TextBlock x:Name="goldrush_club">
+            ♣
+        </TextBlock>
+    </UniformGrid>
+</UserControl>

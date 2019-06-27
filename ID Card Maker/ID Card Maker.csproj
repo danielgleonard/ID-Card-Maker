@@ -163,7 +163,14 @@
     <Compile Include="AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CardBase.cs" />
+    <Compile Include="CardSimple.xaml.cs">
+      <DependentUpon>CardSimple.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CurrentDateAndTime.cs" />
+    <Compile Include="GoldRushGrid.xaml.cs">
+      <DependentUpon>GoldRushGrid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MenuItemExtensions.cs" />
     <Compile Include="NumericEntryControl.xaml.cs" />
     <Compile Include="PersonBio.xaml.cs">
@@ -182,6 +189,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CardPreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CardSimple.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Designs.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GoldRushGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +240,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\img\visitor\visitor_text.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

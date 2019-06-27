@@ -6,9 +6,9 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="ID_Card_Maker.MainWindow"
         Title="ID Card Maker"
-        DataContext="" Closing="Window_Closing"
-        Height="Auto"
-        Width="Auto"
+        DataContext=""
+        Closing="Window_Closing"
+        SizeToContent="WidthAndHeight"
     >
 
     <DockPanel>
@@ -44,19 +44,20 @@
                 </Grid.RowDefinitions>
 
                 <!-- Card preview pane -->
-                <local:CardPreview x:Name="cardPreviewer" Grid.Row="0" />
+                <Viewbox x:Name="cardPreviewViewbox" Grid.Row="0" Height="478" Width="478" />
+                <!--<local:CardPreview x:Name="cardPreviewer" Grid.Row="0" />-->
 
                 <!-- Groupbox for card designs -->
                 <GroupBox Grid.Row="1" Margin="10" Header="Card Design">
                     <UniformGrid x:Name="CardDesignChoosers" Columns="3"/>
                 </GroupBox>
 
-                <Button x:Name="PrintButton" Grid.Row="2" Margin="0" Click="InvokePrint" Width="101" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <emoji:TextBlock TextAlignment="Center">
+                <Button x:Name="PrintButton" Grid.Row="2" Margin="10" Click="InvokePrint" Width="101" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <TextBlock TextAlignment="Center" FontFamily="Segoe UI Emoji">
                         <Run Text="🖨"/>
                         <LineBreak/>
                         <Run Text="Print"/>
-                    </emoji:TextBlock>
+                    </TextBlock>
                 </Button>
             </Grid>
 
