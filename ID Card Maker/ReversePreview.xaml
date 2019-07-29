@@ -1,0 +1,60 @@
+﻿<UserControl
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ID_Card_Maker"
+      xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+      xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="ID_Card_Maker.ReversePreview"
+      x:Name="ReverseCard"
+      mc:Ignorable="d" Cursor="No"  Height="301" Width="478">
+    <UserControl.Resources>
+        <System:Double x:Key="FontSizeTitleBar">44</System:Double>
+        <System:Double x:Key="FontSizeLabel">20</System:Double>
+        <System:Double x:Key="FontSizeData">23</System:Double>
+    </UserControl.Resources>
+
+    <Grid x:Name="CardDesign" Margin="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Label x:Name="TitleBar"        Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding Mode=OneWay, Source={StaticResource ReverseCardTitle}}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="{DynamicResource FontSizeTitleBar}" />
+        <Label x:Name="Height_Label"    Grid.Row="1" Grid.Column="0" Content="Height:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource FontSizeLabel}" />
+        <TextBlock x:Name="Height"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" AutomationProperties.LabeledBy="{Binding ElementName=Height_Label, Mode=OneWay}" FontSize="{DynamicResource FontSizeData}" FontWeight="Bold">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0}′{1}″">
+                    <Binding Source="{StaticResource person}" Path="Height_Feet" UpdateSourceTrigger="PropertyChanged" PresentationTraceSources.TraceLevel="High" />
+                    <Binding Source="{StaticResource person}" Path="Height_Inches" UpdateSourceTrigger="PropertyChanged" PresentationTraceSources.TraceLevel="High" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+
+        <Label x:Name="Weight_Label"    Grid.Row="2" Grid.Column="0" Content="Weight:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource FontSizeLabel}" />
+        <TextBlock x:Name="Weight"  Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" AutomationProperties.LabeledBy="{Binding ElementName=Weight_Label, Mode=OneWay}" FontSize="{DynamicResource FontSizeData}" FontWeight="Bold">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0} lbs.">
+                    <Binding Source="{StaticResource person}" Path="Weight" UpdateSourceTrigger="PropertyChanged" PresentationTraceSources.TraceLevel="High" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+
+        <Label x:Name="Birthday_Label"    Grid.Row="1" Grid.Column="2" Content="DOB:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource FontSizeLabel}" />
+        <TextBlock x:Name="Birthday"  Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" AutomationProperties.LabeledBy="{Binding ElementName=Birthday_Label, Mode=OneWay}" FontSize="{DynamicResource FontSizeData}" FontWeight="Bold">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="MMM d, yyyy">
+                    <Binding Source="{StaticResource person}" Path="Birthday" UpdateSourceTrigger="PropertyChanged" PresentationTraceSources.TraceLevel="High" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+    </Grid>
+</UserControl>

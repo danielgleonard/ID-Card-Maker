@@ -12,6 +12,7 @@
                 <local:Bio.Name_First>John</local:Bio.Name_First>
                 <local:Bio.Name_Last >Doe</local:Bio.Name_Last>
                 <local:Bio.Job_Title >Important work</local:Bio.Job_Title>
+
                 <local:Bio.Height_Feet>
                     <sys:Int32>5</sys:Int32>
                 </local:Bio.Height_Feet>
@@ -26,7 +27,7 @@
                         1957-12-03
                     </sys:DateTime>
                 </local:Bio.Birthday>
-                
+
                 <local:Bio.Photo>
                     <BitmapImage>
                         <BitmapImage.UriSource>
@@ -35,7 +36,8 @@
                     </BitmapImage>
                 </local:Bio.Photo>
             </local:Bio>
-            
+            <sys:String x:Key="ReverseCardTitle">Firearm Owner</sys:String>
+
             <!-- vector logos -->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary x:Name="Logo_Gold_Rush" Source="Resources/img/logos/goldrush/gold_rush_text_vector.xaml" />

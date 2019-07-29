@@ -16,15 +16,13 @@ using System.Windows.Shapes;
 namespace ID_Card_Maker
 {
     /// <summary>
-    /// Interaction logic for CardSimple.xaml
+    /// Interaction logic for ReversePreview.xaml
     /// </summary>
-    /*
-    public partial class CardSimple : CardPreview
+    public partial class ReversePreview : UserControl
     {
-        public CardSimple()
+        public ReversePreview()
         {
             InitializeComponent();
         }
     }
-    */
 }

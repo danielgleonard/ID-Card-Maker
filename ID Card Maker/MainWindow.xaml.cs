@@ -29,7 +29,8 @@ namespace ID_Card_Maker
         /// </summary>
         string appdir;
 
-        CardPreview cardPreviewer = new CardPreview();
+        CardPreview cardPreviewerObverse = new CardPreview();
+        ReversePreview cardPreviewerReverse = new ReversePreview();
 
 
         /// <summary>
@@ -42,9 +43,10 @@ namespace ID_Card_Maker
             appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             appdir = System.IO.Path.Combine(appdata, @"Dan Leonard\ID-Card-Maker");
 
-            cardPreviewViewbox.Child = cardPreviewer;
+            cardPreviewViewbox.Child = cardPreviewerObverse;
+            cardPreviewReverseViewbox.Child = cardPreviewerReverse;
 
-            foreach (CardPreview.Design design in cardPreviewer.Designs)
+            foreach (CardPreview.Design design in cardPreviewerObverse.Designs)
             {
                 // add designs to radio buttons
                 RadioButtonDesign picker = new RadioButtonDesign();
@@ -52,7 +54,7 @@ namespace ID_Card_Maker
                 picker.Design = design;
                 picker.Margin = new Thickness(10);
                 RoutedEventArgs args = new RoutedEventArgs();
-                picker.Checked += new RoutedEventHandler(cardPreviewer.SetDesign);
+                picker.Checked += new RoutedEventHandler(cardPreviewerObverse.SetDesign);
 
                 CardDesignChoosers.Children.Add(picker);
 
@@ -75,10 +77,16 @@ namespace ID_Card_Maker
             (MenuItem_Settings_Default.Items[setting] as MenuItem).IsChecked = true;
         }
 
+        private void InvokePrintReverse(object sender, RoutedEventArgs e)
+        {
+            Print(cardPreviewerReverse, 1);
+        }
+
+
         /// <summary>
         /// Open system print dialog and send it the card preview
         /// </summary>
-        private void InvokePrint(object sender, RoutedEventArgs e)
+        private void InvokePrintObverse(object sender, RoutedEventArgs e)
         {
             /*
             // Create a print dialog object
@@ -94,16 +102,16 @@ namespace ID_Card_Maker
             */
 
             ArchiveData();
-            if (cardPreviewer.Footer.Children.Count != 0 )
+            if (cardPreviewerObverse.Footer.Children.Count != 0 )
             {
                 try
                 {
-                    ((cardPreviewer.Footer.Children[0] as Panel).Children[0] as Label).Content =
+                    ((cardPreviewerObverse.Footer.Children[0] as Panel).Children[0] as Label).Content =
                     "Admitted " + DateTime.Now.ToShortDateString() + " at " + DateTime.Now.ToShortTimeString();
 
-                    Print(cardPreviewer, 1);
+                    Print(cardPreviewerObverse, 1);
 
-                    ((cardPreviewer.Footer.Children[0] as Panel).Children[0] as Label).Content = "Print Date";
+                    ((cardPreviewerObverse.Footer.Children[0] as Panel).Children[0] as Label).Content = "Print Date";
                 }
                 catch (NullReferenceException ex)
                 {
@@ -116,12 +124,12 @@ namespace ID_Card_Maker
 #if DEBUG
                     MessageBox.Show(ex.Message, "Exception caught", MessageBoxButton.OK, MessageBoxImage.Error);
 #endif
-                    Print(cardPreviewer, 1);
+                    Print(cardPreviewerObverse, 1);
                 }
             }
             else
             {
-                Print(cardPreviewer, 1);
+                Print(cardPreviewerObverse, 1);
             }
         }
 

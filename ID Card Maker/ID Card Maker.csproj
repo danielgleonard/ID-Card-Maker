@@ -182,6 +182,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="RadioButtonDesign.cs" />
+    <Compile Include="ReversePreview.xaml.cs">
+      <DependentUpon>ReversePreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="TokenCacheHelper.cs" />
     <Page Include="AboutWindow.xaml">
@@ -242,6 +245,10 @@
     <Page Include="Resources\img\visitor\visitor_text.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ReversePreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
