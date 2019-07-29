@@ -102,14 +102,34 @@ namespace ID_Card_Maker
             {
                 this.Dispatcher.Invoke(() =>
                 {
-                    Bitmap bm = (Bitmap)eventArgs.Frame.Clone();
-                    BitmapSource bs = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
-                        bm.GetHbitmap(),
-                        IntPtr.Zero,
-                        System.Windows.Int32Rect.Empty,
-                        BitmapSizeOptions.FromWidthAndHeight(bm.Width, bm.Height));
+                    BitmapSource bs = null;
+
+                    Bitmap bm = AForge.Imaging.Image.Clone(eventArgs.Frame);
+
+                    // memory leak stuff, see class SafeHBitmapHandle
+
+                    IntPtr hBitmap = bm.GetHbitmap();
+                    var handlebitmap = new SafeHBitmapHandle(hBitmap, true);
+                    
+                    try
+                    {
+                        using (handlebitmap)
+                        {
+                            bs = System.Windows.Interop.Imaging.CreateBitmapSourceFromHBitmap(
+                                handlebitmap.DangerousGetHandle(),
+                                IntPtr.Zero,
+                                Int32Rect.Empty,
+                                BitmapSizeOptions.FromWidthAndHeight(bm.Width, bm.Height));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(Application.Current.MainWindow, ex.Message, ex.ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
                     if (ready)
                         Image_Previewer.Source = bs;
+                    bm.Dispose();
                 });
             } catch {} //this is bad code too
             // clone the bitmap
@@ -161,9 +181,32 @@ namespace ID_Card_Maker
         /// <summary>
         /// Event handler for clicking 'capture' button
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void Button_Capture_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Capture();
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show(
+                    Application.Current.MainWindow,
+                    "Exception caught.\r\n" + ex.Message,
+                    "Null Reference Exception",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error,
+                    MessageBoxResult.OK
+                    );
+            }
+        }
+
+        /// <summary>
+        /// Add event handlers to HolyGrid and prepare for cropping
+        /// </summary>
+        /// <exception cref="System.NullReferenceException">
+        /// Thrown when attempting to capture image while <code>Image_Previewer.Source</code> is empty
+        /// </exception>
+        private void Capture()
         {
             if (Image_Previewer.Source != null)
             {
@@ -177,7 +220,9 @@ namespace ID_Card_Maker
                 HolyGrid.MouseLeftButtonUp += mouseEvent_ButtonUp;
             }
             else
-            { MessageBox.Show("null exception"); }
+            {
+                throw new NullReferenceException("Attempted to capture image from empty feed.");
+            }
         }
 
         #region Crop event handlers
@@ -257,6 +302,31 @@ namespace ID_Card_Maker
             //((MainWindow)Application.Current.MainWindow).Input_Photo.Source = image;
             Photo.Source = image;
             Image_Previewer.Source = image;
+        }
+    }
+
+    /// <summary>
+    /// Safe handlers for HBitmap
+    /// </summary>
+    /// <remarks>
+    /// Adapted from various StackOverflow answers at
+    /// https://stackoverflow.com/questions/1546091/wpf-createbitmapsourcefromhbitmap-memory-leak
+    /// </remarks>
+    public class SafeHBitmapHandle : Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid
+    {
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        public static extern int DeleteObject(IntPtr hObject);
+
+        [System.Security.SecurityCritical]
+        public SafeHBitmapHandle(IntPtr preexistingHandle, bool ownsHandle)
+            : base(ownsHandle)
+        {
+            SetHandle(preexistingHandle);
+        }
+
+        protected override bool ReleaseHandle()
+        {
+            return DeleteObject(handle) > 0;
         }
     }
 }
