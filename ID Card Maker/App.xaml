@@ -28,6 +28,22 @@
                     </sys:DateTime>
                 </local:Bio.Birthday>
 
+                <local:Bio.ID_Number>
+                    <sys:Int32>
+                        123456
+                    </sys:Int32>
+                </local:Bio.ID_Number>
+
+                <local:Bio.HairColor>
+                    <sys:Int32>0</sys:Int32>
+                </local:Bio.HairColor>
+                <local:Bio.EyeColor>
+                    <sys:Int32>2</sys:Int32>
+                </local:Bio.EyeColor>
+                <local:Bio.Sex>
+                    <sys:Int32>0</sys:Int32>
+                </local:Bio.Sex>
+
                 <local:Bio.Photo>
                     <BitmapImage>
                         <BitmapImage.UriSource>
@@ -36,7 +52,31 @@
                     </BitmapImage>
                 </local:Bio.Photo>
             </local:Bio>
-            <sys:String x:Key="ReverseCardTitle">Firearm Owner</sys:String>
+            <sys:String x:Key="ReverseCardTitle">Authorized Firearm Holder</sys:String>
+
+            <local:Strings x:Key="HairColors">
+                <sys:String>Bald</sys:String>
+                <sys:String>Black</sys:String>
+                <sys:String>Blond</sys:String>
+                <sys:String>Brown</sys:String>
+                <sys:String>Gray</sys:String>
+                <sys:String>Red</sys:String>
+            </local:Strings>
+
+            <local:Strings x:Key="EyeColors">
+                <sys:String>Black</sys:String>
+                <sys:String>Blue</sys:String>
+                <sys:String>Brown</sys:String>
+                <sys:String>Green</sys:String>
+                <sys:String>Gray</sys:String>
+                <sys:String>Hazel</sys:String>
+            </local:Strings>
+
+            <local:Strings x:Key="Sexes">
+                <sys:String>Male</sys:String>
+                <sys:String>Female</sys:String>
+            </local:Strings>
+            <GridLength x:Key="CardMarginTop">18</GridLength>
 
             <!-- vector logos -->
             <ResourceDictionary.MergedDictionaries>

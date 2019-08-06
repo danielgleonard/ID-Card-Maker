@@ -15,6 +15,10 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -24,9 +28,13 @@
         <Label x:Name="label_NameFirst" Grid.Column="0" Grid.Row="0" Content="First Name:"  Margin="10" />
         <Label x:Name="label_NameLast"  Grid.Column="0" Grid.Row="1" Content="Last Name:"   Margin="10" />
         <Label x:Name="label_JobTitle"  Grid.Column="0" Grid.Row="2" Content="Job Title:"   Margin="10" />
-        <Label x:Name="label_Height"    Grid.Column="0" Grid.Row="3" Content="Height:"      Margin="10" />
-        <Label x:Name="label_Weight"    Grid.Column="0" Grid.Row="4" Content="Weight:"      Margin="10" />
-        <Label x:Name="label_Birthday"  Grid.Column="0" Grid.Row="5" Content="Birthday:"    Margin="10" />
+        <Label x:Name="label_ID"        Grid.Column="0" Grid.Row="3" Content="Firearm ID:"  Margin="10" />
+        <Label x:Name="label_Height"    Grid.Column="0" Grid.Row="4" Content="Height:"      Margin="10" />
+        <Label x:Name="label_Weight"    Grid.Column="0" Grid.Row="5" Content="Weight:"      Margin="10" />
+        <Label x:Name="label_Birthday"  Grid.Column="0" Grid.Row="6" Content="Birthday:"    Margin="10" />
+        <Label x:Name="label_Hair"      Grid.Column="0" Grid.Row="7" Content="Hair color:"  Margin="10" />
+        <Label x:Name="label_Eyes"      Grid.Column="0" Grid.Row="8" Content="Eye color:"   Margin="10" />
+        <Label x:Name="label_Sex"       Grid.Column="0" Grid.Row="9" Content="Sex:"         Margin="10" />
         <!--<TextBox x:Name="Input_NameFirst" Grid.Column="1" Grid.Row="0" Margin="10" Text="{Binding Name_First, Mode=TwoWay, UpdateSourceTrigger=Explicit}" MaxLines="1" AutomationProperties.LabeledBy="{Binding ElementName=label_NameFirst, Mode=OneWay}" GotFocus="Input_Text_GotFocus" TextChanged="TextBox_TextChanged" />
         <TextBox x:Name="Input_NameLast"  Grid.Column="1" Grid.Row="1" Margin="10" Text="{Binding Name_Last,  Mode=TwoWay, UpdateSourceTrigger=Explicit}" MaxLines="1" AutomationProperties.LabeledBy="{Binding ElementName=label_NameLast,  Mode=OneWay}" GotFocus="Input_Text_GotFocus" TextChanged="TextBox_TextChanged" />
         <TextBox x:Name="Input_JobTitle"  Grid.Column="1" Grid.Row="2" Margin="10" Text="{Binding Job_Title,  Mode=TwoWay, UpdateSourceTrigger=Explicit}" MaxLines="1" AutomationProperties.LabeledBy="{Binding ElementName=label_JobTitle,  Mode=OneWay}" GotFocus="Input_Text_GotFocus" TextChanged="TextBox_TextChanged" />-->
@@ -48,7 +56,15 @@
                    UpdateSourceTrigger="PropertyChanged"/>
             </TextBox.Text>
         </TextBox>
-        <Grid Grid.Column="1" Grid.Row="3" AutomationProperties.LabeledBy="{Binding ElementName=label_Height, Mode=OneWay}" >
+
+        <TextBox x:Name="Input_ID"  Grid.Column="1" Grid.Row="3" Margin="10" MaxLines="1" AutomationProperties.LabeledBy="{Binding ElementName=label_ID,  Mode=OneWay}" GotFocus="Input_Text_GotFocus" GotKeyboardFocus="Input_Text_GotFocus" GotMouseCapture="Input_Text_GotFocus">
+            <TextBox.Text>
+                <Binding Source="{StaticResource person}" Path="ID_Number" Mode="TwoWay"
+                   UpdateSourceTrigger="PropertyChanged"/>
+            </TextBox.Text>
+        </TextBox>
+
+        <Grid Grid.Column="1" Grid.Row="4" AutomationProperties.LabeledBy="{Binding ElementName=label_Height, Mode=OneWay}" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
@@ -60,7 +76,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <ned:NumericEntryControl x:Name="Input_Height_Feet" Grid.Column="0" Grid.Row="0" Margin="10" AutomationProperties.LabeledBy="{Binding ElementName=label_Height_Feet_Units, Mode=OneWay}">
+                <ned:NumericEntryControl x:Name="Input_Height_Feet" Grid.Column="0" Grid.Row="0" Margin="10" AutomationProperties.LabeledBy="{Binding ElementName=label_Height_Feet_Units, Mode=OneWay}" >
                     <ned:NumericEntryControl.Value>
                         <Binding Source="{StaticResource person}" Path="Height_Feet" Mode="TwoWay"
                             UpdateSourceTrigger="PropertyChanged"/>
@@ -98,7 +114,7 @@
                 <Label Name="label_Height_Inches_Units" Grid.Row="0" Grid.Column="1" Content="inches" Margin="10" />
             </Grid>
         </Grid>
-        <Grid Grid.Column="1" Grid.Row="4" AutomationProperties.LabeledBy="{Binding ElementName=label_Weight, Mode=OneWay}" >
+        <Grid Grid.Column="1" Grid.Row="5" AutomationProperties.LabeledBy="{Binding ElementName=label_Weight, Mode=OneWay}" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="Auto" />
@@ -119,11 +135,32 @@
 
             <Label Name="label_Weight_Units" Grid.Row="0" Grid.Column="1" Content="pounds" Margin="10" />
         </Grid>
-        <DatePicker x:Name="Input_Birthday"  Grid.Column="1" Grid.Row="5" Margin="10" AutomationProperties.LabeledBy="{Binding ElementName=label_Birthday,  Mode=OneWay}" SelectedDateFormat="Short">
+        <DatePicker x:Name="Input_Birthday"  Grid.Column="1" Grid.Row="6" Margin="10" AutomationProperties.LabeledBy="{Binding ElementName=label_Birthday,  Mode=OneWay}" SelectedDateFormat="Short" >
             <DatePicker.SelectedDate>
                 <Binding Source="{StaticResource person}" Path="Birthday" Mode="TwoWay"
                    UpdateSourceTrigger="PropertyChanged"/>
             </DatePicker.SelectedDate>
         </DatePicker>
+
+        <ComboBox x:Name="Input_Hair" Grid.Column="1" Grid.Row="7" Margin="10" AutomationProperties.LabeledBy="{Binding ElementName=label_Hair, Mode=OneWay}" ItemsSource="{Binding Mode=OneWay, Source={StaticResource HairColors}}">
+            <ComboBox.SelectedIndex>
+                <Binding Source="{StaticResource person}" Path="HairColor" Mode="TwoWay"
+                         UpdateSourceTrigger="PropertyChanged"/>
+            </ComboBox.SelectedIndex>
+        </ComboBox>
+        
+        <ComboBox x:Name="Input_Eyes" Grid.Column="1" Grid.Row="8" Margin="10" AutomationProperties.LabeledBy="{Binding ElementName=label_Eyes, Mode=OneWay}" ItemsSource="{Binding Mode=OneWay, Source={StaticResource EyeColors}}">
+            <ComboBox.SelectedIndex>
+                <Binding Source="{StaticResource person}" Path="EyeColor" Mode="TwoWay"
+                         UpdateSourceTrigger="PropertyChanged"/>
+            </ComboBox.SelectedIndex>
+        </ComboBox>
+
+        <ComboBox x:Name="Input_Sex" Grid.Column="1" Grid.Row="9" Margin="10" AutomationProperties.LabeledBy="{Binding ElementName=label_Sex, Mode=OneWay}" ItemsSource="{Binding Mode=OneWay, Source={StaticResource Sexes}}">
+            <ComboBox.SelectedIndex>
+                <Binding Source="{StaticResource person}" Path="Sex" Mode="TwoWay"
+                         UpdateSourceTrigger="PropertyChanged"/>
+            </ComboBox.SelectedIndex>
+        </ComboBox>
     </Grid>
 </UserControl>

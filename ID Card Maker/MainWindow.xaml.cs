@@ -223,7 +223,7 @@ namespace ID_Card_Maker
 
             if (person.Photo.Height != 1080.1507568359375) // this is very bad code
             {
-                string filename = string.Concat(person.Name_First, "_", person.Name_Last, ".png");
+                string filename = string.Format("{0}, {1}.png", arg0: person.Name_Last, arg1:person.Name_First);
 
                 SaveBitmapImageToFile(person.Photo, appdir, filename);
             }
@@ -297,6 +297,13 @@ namespace ID_Card_Maker
         {
             System.Diagnostics.Process.Start(appdir);
         }
+
+        private void MenuItem_Settings_Certification_Click(object sender, RoutedEventArgs e)
+        {
+            SettingUpdater settingUpdaterWindow = new SettingUpdater("CertificationNum", "Certification Number");
+            settingUpdaterWindow.Owner = this;
+            settingUpdaterWindow.ShowDialog();
+        }
     }
 
 
@@ -317,5 +324,9 @@ namespace ID_Card_Maker
         public DateTime Birthday { get; set; }
         public string Job_Title  { get; set; }
         public BitmapSource Photo { get; set; }
+        public int HairColor { get; set; }
+        public int EyeColor { get; set; }
+        public int Sex { get; set; }
+        public int ID_Number { get; set; }
     }
 }

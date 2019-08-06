@@ -34,5 +34,17 @@ namespace ID_Card_Maker.Properties {
                 this["Design"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("123.456789")]
+        public string CertificationNum {
+            get {
+                return ((string)(this["CertificationNum"]));
+            }
+            set {
+                this["CertificationNum"] = value;
+            }
+        }
     }
 }

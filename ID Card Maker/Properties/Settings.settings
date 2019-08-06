@@ -5,5 +5,8 @@
     <Setting Name="Design" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="CertificationNum" Type="System.String" Scope="User">
+      <Value Profile="(Default)">123.456789</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -6,31 +6,70 @@
       xmlns:local="clr-namespace:ID_Card_Maker"
       xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
       xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="ID_Card_Maker.ReversePreview"
+      xmlns:properties="clr-namespace:ID_Card_Maker.Properties"
       x:Name="ReverseCard"
-      mc:Ignorable="d" Cursor="No"  Height="301" Width="478">
+      mc:Ignorable="d" Cursor="No"  Height="478" Width="301">
     <UserControl.Resources>
-        <System:Double x:Key="FontSizeTitleBar">44</System:Double>
+        <System:Double x:Key="FontSizeTitleBar">38</System:Double>
         <System:Double x:Key="FontSizeLabel">20</System:Double>
         <System:Double x:Key="FontSizeData">23</System:Double>
+
+        <Style x:Key="labelStyle" TargetType="{x:Type Label}">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Grid.Column" Value="0" />
+            <Setter Property="FontSize" Value="{DynamicResource FontSizeLabel}" />
+            <Setter Property="Margin" Value="10 0 10 0" />
+        </Style>
+
+        <Style x:Key="textblockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Grid.Column" Value="1" />
+            <Setter Property="FontSize" Value="{DynamicResource FontSizeData}" />
+            <Setter Property="Margin" Value="10 0 10 0" />
+        </Style>
+
+        <local:ListIndexConverter x:Key="listIndexConverter" />
     </UserControl.Resources>
 
     <Grid x:Name="CardDesign" Margin="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="{DynamicResource CardMarginTop}" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Label x:Name="TitleBar"        Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding Mode=OneWay, Source={StaticResource ReverseCardTitle}}" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="{DynamicResource FontSizeTitleBar}" />
-        <Label x:Name="Height_Label"    Grid.Row="1" Grid.Column="0" Content="Height:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource FontSizeLabel}" />
-        <TextBlock x:Name="Height"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" AutomationProperties.LabeledBy="{Binding ElementName=Height_Label, Mode=OneWay}" FontSize="{DynamicResource FontSizeData}" FontWeight="Bold">
+        <TextBlock x:Name="TitleBar"    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="{DynamicResource FontSizeTitleBar}">
+            <TextBlock.Text>
+                <Binding Mode="OneWay" Source="{StaticResource ReverseCardTitle}"/>
+            </TextBlock.Text>
+        </TextBlock>
+
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" BorderThickness="0 0 0 2" BorderBrush="Black" />
+
+        <Label x:Name="ID_Label"  Grid.Row="2" Content="ID"  Style="{StaticResource labelStyle}" />
+        <TextBlock x:Name="IDnum"  Grid.Row="2" AutomationProperties.LabeledBy="{Binding ElementName=ID_Label, Mode=OneWay}" Style="{StaticResource textblockStyle}">
+            <TextBlock.Text>
+                <Binding Source="{StaticResource person}" Path="ID_Number" UpdateSourceTrigger="PropertyChanged" PresentationTraceSources.TraceLevel="High" />
+            </TextBlock.Text>
+        </TextBlock>
+
+        <Label x:Name="Height_Label"   Grid.Row="3" Content="Height" Style="{StaticResource labelStyle}" />
+        <TextBlock x:Name="Height"  Grid.Row="3" AutomationProperties.LabeledBy="{Binding ElementName=Height_Label, Mode=OneWay}" Style="{StaticResource textblockStyle}">
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0}′{1}″">
                     <Binding Source="{StaticResource person}" Path="Height_Feet" UpdateSourceTrigger="PropertyChanged" PresentationTraceSources.TraceLevel="High" />
@@ -39,8 +78,8 @@
             </TextBlock.Text>
         </TextBlock>
 
-        <Label x:Name="Weight_Label"    Grid.Row="2" Grid.Column="0" Content="Weight:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource FontSizeLabel}" />
-        <TextBlock x:Name="Weight"  Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" AutomationProperties.LabeledBy="{Binding ElementName=Weight_Label, Mode=OneWay}" FontSize="{DynamicResource FontSizeData}" FontWeight="Bold">
+        <Label x:Name="Weight_Label"    Grid.Row="4" Content="Weight"  Style="{StaticResource labelStyle}" />
+        <TextBlock x:Name="Weight"  Grid.Row="4" AutomationProperties.LabeledBy="{Binding ElementName=Weight_Label, Mode=OneWay}" Style="{StaticResource textblockStyle}">
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0} lbs.">
                     <Binding Source="{StaticResource person}" Path="Weight" UpdateSourceTrigger="PropertyChanged" PresentationTraceSources.TraceLevel="High" />
@@ -48,11 +87,51 @@
             </TextBlock.Text>
         </TextBlock>
 
-        <Label x:Name="Birthday_Label"    Grid.Row="1" Grid.Column="2" Content="DOB:" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource FontSizeLabel}" />
-        <TextBlock x:Name="Birthday"  Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" AutomationProperties.LabeledBy="{Binding ElementName=Birthday_Label, Mode=OneWay}" FontSize="{DynamicResource FontSizeData}" FontWeight="Bold">
+        <Label x:Name="Birthday_Label"    Grid.Row="5" Content="DOB"  Style="{StaticResource labelStyle}" />
+        <TextBlock x:Name="Birthday"  Grid.Row="5" AutomationProperties.LabeledBy="{Binding ElementName=Birthday_Label, Mode=OneWay}" Style="{StaticResource textblockStyle}">
             <TextBlock.Text>
                 <MultiBinding StringFormat="MMM d, yyyy">
                     <Binding Source="{StaticResource person}" Path="Birthday" UpdateSourceTrigger="PropertyChanged" PresentationTraceSources.TraceLevel="High" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+
+        <Label x:Name="Hair_Label" Grid.Row="6" Content="Hair" Style="{StaticResource labelStyle}" />
+        <TextBlock x:Name="Hair" Grid.Row="6" AutomationProperties.LabeledBy="{Binding ElementName=Hair_Label, Mode=OneWay}" Style="{StaticResource textblockStyle}">
+            <TextBlock.Text>
+                <MultiBinding Converter="{StaticResource listIndexConverter}">
+                    <Binding Source="{StaticResource HairColors}" Mode="OneWay" />
+                    <Binding Source="{StaticResource person}" Path="HairColor" UpdateSourceTrigger="PropertyChanged" PresentationTraceSources.TraceLevel="High" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+        
+        <Label x:Name="Eyes_Label"  Grid.Row="7" Content="Eyes" Style="{StaticResource labelStyle}" />
+        <TextBlock x:Name="Eyes" Grid.Row="7" AutomationProperties.LabeledBy="{Binding ElementName=Eyes_Label, Mode=OneWay}" Style="{StaticResource textblockStyle}">
+            <TextBlock.Text>
+                <MultiBinding Converter="{StaticResource listIndexConverter}">
+                    <Binding Source="{StaticResource EyeColors}" Mode="OneWay" />
+                    <Binding Source="{StaticResource person}" Path="EyeColor" UpdateSourceTrigger="PropertyChanged" PresentationTraceSources.TraceLevel="High" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+
+        <Label x:Name="Sex_Label"  Grid.Row="8" Content="Sex"  Style="{StaticResource labelStyle}" />
+        <TextBlock x:Name="Sex" Grid.Row="8" AutomationProperties.LabeledBy="{Binding ElementName=Sex_Label, Mode=OneWay}" Style="{StaticResource textblockStyle}">
+            <TextBlock.Text>
+                <MultiBinding Converter="{StaticResource listIndexConverter}">
+                    <Binding Source="{StaticResource Sexes}" Mode="OneWay" />
+                    <Binding Source="{StaticResource person}" Path="Sex" UpdateSourceTrigger="PropertyChanged" PresentationTraceSources.TraceLevel="High" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+        
+        <Label x:Name="Row9_Label"  Grid.Row="9" Content=""  Style="{StaticResource labelStyle}" />
+
+        <TextBlock x:Name="Certification_Record" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="5">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}Illinois Agency Certification {0}">
+                    <Binding Source="{x:Static properties:Settings.Default}" Path="CertificationNum" UpdateSourceTrigger="PropertyChanged" PresentationTraceSources.TraceLevel="High" />
                 </MultiBinding>
             </TextBlock.Text>
         </TextBlock>

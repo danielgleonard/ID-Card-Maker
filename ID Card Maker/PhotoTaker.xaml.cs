@@ -74,6 +74,10 @@ namespace ID_Card_Maker
         /// </summary>
         private void Button_DeviceChooser_Click(object sender, RoutedEventArgs e)
         {
+            if(ComboBox_DeviceChooser.SelectedIndex < 0)
+            {
+                return;
+            }
             FinalFrame = new VideoCaptureDevice(CaptureDevice[ComboBox_DeviceChooser.SelectedIndex].MonikerString); // specified web cam and its filter moniker string
             FinalFrame.NewFrame += frameHandler; // click button event is fired, 
             anchorPoint = new System.Drawing.Point();

@@ -53,4 +53,9 @@ namespace ID_Card_Maker
                             });
         }
     }
+
+    /// <summary>
+    /// Placeholder class to structure <code>IEnumerable</code> of <code>string</code> in XAML
+    /// </summary>
+    public class Strings : List<string> { }
 }

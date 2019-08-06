@@ -35,7 +35,7 @@
     <ProductName>ID Card Maker</ProductName>
     <PublisherName>Dan Leonard</PublisherName>
     <SuiteName>Gold Rush internal software</SuiteName>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -186,6 +186,9 @@
       <DependentUpon>ReversePreview.xaml</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="SettingUpdater.xaml.cs">
+      <DependentUpon>SettingUpdater.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TokenCacheHelper.cs" />
     <Page Include="AboutWindow.xaml">
       <SubType>Designer</SubType>
@@ -247,6 +250,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ReversePreview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SettingUpdater.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
