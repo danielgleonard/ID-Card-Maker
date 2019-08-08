@@ -91,15 +91,6 @@ namespace ID_Card_Maker.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ID Maker Zenius.
-        /// </summary>
-        public static string PrinterName {
-            get {
-                return ResourceManager.GetString("PrinterName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         public static System.Drawing.Bitmap unkown_person {

@@ -8,5 +8,8 @@
     <Setting Name="CertificationNum" Type="System.String" Scope="User">
       <Value Profile="(Default)">123.456789</Value>
     </Setting>
+    <Setting Name="PrinterName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ID Maker Zenius</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

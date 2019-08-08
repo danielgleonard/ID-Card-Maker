@@ -39,12 +39,12 @@ namespace ID_Card_Maker
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             titleBox.Text += String.Format(" “{0}”", arg0: settingHuman);
-            settingBox.Text = Properties.Settings.Default.CertificationNum;
+            settingBox.Text = Properties.Settings.Default[settingMachine] as string;
         }
 
         private void BtnOK_Click(object sender, RoutedEventArgs e)
         {
-            Properties.Settings.Default.CertificationNum = settingBox.Text;
+            Properties.Settings.Default[settingMachine] = settingBox.Text;
             Properties.Settings.Default.Save();
             this.Close();
         }

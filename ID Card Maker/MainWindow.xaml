@@ -26,6 +26,11 @@
                         <system:String x:Key="helptext">Change the certification number that appears at the bottom of the reverse card</system:String>
                     </MenuItem.Resources>
                 </MenuItem>
+                <MenuItem x:Name="MenuItem_Settings_PrinterName" Header="Update _Printer Name" AutomationProperties.HelpText="{DynamicResource helptext}" ToolTip="{DynamicResource helptext}" Click="MenuItem_Settings_PrinterName_Click">
+                    <MenuItem.Resources>
+                        <system:String x:Key="helptext">Change the stored name of your ID card printer</system:String>
+                    </MenuItem.Resources>
+                </MenuItem>
             </MenuItem>
             <MenuItem x:Name="MenuItem_Help" Header="_Help">
                 <MenuItem x:Name="MenuItem_Help_About" Header="_About" Click="MenuItem_Help_About_Click" />

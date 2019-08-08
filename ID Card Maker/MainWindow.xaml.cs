@@ -106,6 +106,7 @@ namespace ID_Card_Maker
             {
                 try
                 {
+                    // will throw NullReferenceException if not visitor pass
                     ((cardPreviewerObverse.Footer.Children[0] as Panel).Children[0] as Label).Content =
                     "Admitted " + DateTime.Now.ToShortDateString() + " at " + DateTime.Now.ToShortTimeString();
 
@@ -115,14 +116,16 @@ namespace ID_Card_Maker
                 }
                 catch (NullReferenceException ex)
                 {
+                    // is not visitor pass
 #if DEBUG
-                    MessageBox.Show(ex.Message, "Exception caught", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ex.Message + "\r\nMay be non-visitor pass", ex.GetType().ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
 #endif
+                    Print(cardPreviewerObverse, 1);
                 }
                 catch (Exception ex)
                 {
 #if DEBUG
-                    MessageBox.Show(ex.Message, "Exception caught", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ex.Message, ex.GetType().ToString(), MessageBoxButton.OK, MessageBoxImage.Error);
 #endif
                     Print(cardPreviewerObverse, 1);
                 }
@@ -154,7 +157,7 @@ namespace ID_Card_Maker
             // set to id maker
             try
             {
-                pd.PrintQueue = new System.Printing.PrintQueue(new System.Printing.PrintServer(), Properties.Resources.PrinterName);
+                pd.PrintQueue = new System.Printing.PrintQueue(new System.Printing.PrintServer(), Properties.Settings.Default.PrinterName);
             }
             catch (Exception ex)
             {
@@ -168,7 +171,7 @@ namespace ID_Card_Maker
                                 MessageBoxImage.Error);
 #else
                 MessageBoxResult exRes = MessageBox.Show("Ensure your " +
-                                                            Properties.Resources.PrinterName +
+                                                            Properties.Settings.Default.PrinterName +
                                                             " is plugged in and ready." +
                                                             "\r\n\r\nPrint to another printer?",
                                                             "Error printing.",
@@ -388,6 +391,13 @@ namespace ID_Card_Maker
         private void MenuItem_Settings_Certification_Click(object sender, RoutedEventArgs e)
         {
             SettingUpdater settingUpdaterWindow = new SettingUpdater("CertificationNum", "Certification Number");
+            settingUpdaterWindow.Owner = this;
+            settingUpdaterWindow.ShowDialog();
+        }
+
+        private void MenuItem_Settings_PrinterName_Click(object sender, RoutedEventArgs e)
+        {
+            SettingUpdater settingUpdaterWindow = new SettingUpdater("PrinterName", "Printer Name");
             settingUpdaterWindow.Owner = this;
             settingUpdaterWindow.ShowDialog();
         }
