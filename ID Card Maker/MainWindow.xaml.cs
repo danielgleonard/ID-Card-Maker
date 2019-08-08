@@ -353,7 +353,36 @@ namespace ID_Card_Maker
 
         private void MenuItem_File_AppData_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(appdir);
+            try
+            {
+#if DEBUG
+                MessageBox.Show(
+                    String.Format(
+                        "Appdata Directory: {0}\r\n'appdir': {1}",
+                        arg0: appdata,
+                        arg1: appdir
+                    ),
+                    "Application Directory",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                    );
+#endif
+
+                System.Diagnostics.Process.Start(appdir);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    String.Format(
+                        "{0}. Please try again after printing ID cards",
+                        arg0: ex.Message
+                        ),
+                    "Photo log not located",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                    );
+            }
         }
 
         private void MenuItem_Settings_Certification_Click(object sender, RoutedEventArgs e)
