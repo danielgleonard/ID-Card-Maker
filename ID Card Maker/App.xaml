@@ -1,7 +1,16 @@
-<Application x:Class="ID_Card_Maker.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" StartupUri="MainWindow.xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d"
-        xmlns:local="clr-namespace:ID_Card_Maker" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006" ShutdownMode="OnMainWindowClose">
-  <Application.Resources>
+<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:ID_Card_Maker" xmlns:sys="clr-namespace:System;assembly=mscorlib" xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:System="clr-namespace:System;assembly=System" x:Class="ID_Card_Maker.App" StartupUri="MainWindow.xaml" d1p1:Ignorable="d"
+        ShutdownMode="OnMainWindowClose">
+    <Application.Resources>
         <ResourceDictionary>
+
+            <!-- vector logos -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="Logo_Gold_Rush" Source="Resources/img/logos/goldrush/gold_rush_text_vector.xaml" />
+                <ResourceDictionary x:Name="Logo_Heidner" Source="Resources/img/logos/heidner/heidner_vector.xaml" />
+                <ResourceDictionary x:Name="Visitor" Source="Resources/img/visitor/visitor_text.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
             <!-- Card design colors -->
             <SolidColorBrush x:Key="GoldRush_Gold" Color="#FFDAB006" />
             <SolidColorBrush x:Key="Heidner_Blue"  Color="#FF232555" />
@@ -23,15 +32,11 @@
                     <sys:Int32>325</sys:Int32>
                 </local:Bio.Weight>
                 <local:Bio.Birthday>
-                    <sys:DateTime>
-                        1957-12-03
-                    </sys:DateTime>
+                    <sys:DateTime>1957-12-03</sys:DateTime>
                 </local:Bio.Birthday>
 
                 <local:Bio.ID_Number>
-                    <sys:Int32>
-                        123456
-                    </sys:Int32>
+                    <sys:Int32>123456</sys:Int32>
                 </local:Bio.ID_Number>
 
                 <local:Bio.HairColor>
@@ -45,11 +50,7 @@
                 </local:Bio.Sex>
 
                 <local:Bio.Photo>
-                    <BitmapImage>
-                        <BitmapImage.UriSource>
-                            Resources/img/unkown person.png
-                        </BitmapImage.UriSource>
-                    </BitmapImage>
+                    <BitmapImage UriSource="Resources/img/unkown person.png"/>
                 </local:Bio.Photo>
             </local:Bio>
             <sys:String x:Key="ReverseCardTitle">Authorized Firearm Holder</sys:String>
@@ -78,13 +79,11 @@
             </local:Strings>
             <GridLength x:Key="CardMarginTop">18</GridLength>
 
-            <!-- vector logos -->
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary x:Name="Logo_Gold_Rush" Source="Resources/img/logos/goldrush/gold_rush_text_vector.xaml" />
-                <ResourceDictionary x:Name="Logo_Heidner" Source="Resources/img/logos/heidner/heidner_vector.xaml" />
-                <ResourceDictionary x:Name="Visitor" Source="Resources/img/visitor/visitor_text.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-            
+            <System:Uri x:Key="UriGitHubMain">https://github.com/CombustibleLemon/ID-Card-Maker</System:Uri>
+            <System:Uri x:Key="UriGitHubIssues">https://github.com/CombustibleLemon/ID-Card-Maker/issues</System:Uri>
+            <System:Uri x:Key="UriGPLv3">https://www.gnu.org/licenses/gpl-3.0.html</System:Uri>
+            <System:Uri x:Key="UriDanLeonardWebsite">https://danleonard.us/</System:Uri>
+
         </ResourceDictionary>
-  </Application.Resources>
+    </Application.Resources>
 </Application>

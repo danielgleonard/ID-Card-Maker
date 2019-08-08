@@ -28,12 +28,12 @@
         </TextBlock>
         <TextBlock Margin="5" Grid.Row="1" TextAlignment="Center">
             Licensed under the
-            <Hyperlink NavigateUri="https://www.gnu.org/licenses/gpl-3.0.html" RequestNavigate="Hyperlink_RequestNavigate">
+            <Hyperlink NavigateUri="{DynamicResource UriGPLv3}" RequestNavigate="Hyperlink_RequestNavigate">
                 GNU General Public License v3.0
             </Hyperlink>
             <LineBreak />
             Source code available at
-            <Hyperlink NavigateUri="https://github.com/CombustibleLemon/ID-Card-Maker" RequestNavigate="Hyperlink_RequestNavigate">
+            <Hyperlink NavigateUri="{DynamicResource UriGitHubMain}" RequestNavigate="Hyperlink_RequestNavigate">
                 GitHub
             </Hyperlink>
         </TextBlock>
@@ -51,7 +51,7 @@
             by Dan Leonard
         </TextBlock>
         <TextBlock Margin="5" Grid.Row="4" HorizontalAlignment="Center" FontSize="10">
-            <Hyperlink NavigateUri="https://danleonard.us/" RequestNavigate="Hyperlink_RequestNavigate">
+            <Hyperlink NavigateUri="{DynamicResource UriDanLeonardWebsite}" RequestNavigate="Hyperlink_RequestNavigate">
                 danleonard.us
             </Hyperlink>
         </TextBlock>

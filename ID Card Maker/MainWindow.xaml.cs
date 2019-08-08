@@ -290,7 +290,65 @@ namespace ID_Card_Maker
         /// </remarks>
         private void MenuItem_Help_Report_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com./CombustibleLemon/ID-Card-Maker/issues");
+            Uri uri;
+
+            try {
+                uri = getIssueURI();
+
+#if DEBUG
+                MessageBox.Show(
+                    String.Format(
+                        "Object: {0}\r\nAbsolute URI: {1}\r\nLocal Path: {2}\r\nAbsolute Path: {3}",
+                        new object[] {
+                            uri.GetType(),
+                            uri.AbsoluteUri,
+                            uri.LocalPath,
+                            uri.AbsolutePath
+                        }
+                    ),
+                    "Recieved URI",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                    );
+#endif
+
+                System.Diagnostics.Process.Start(uri.AbsoluteUri);
+            }
+            catch (Exception ex) {
+                MessageBox.Show(
+                    ex.Message,
+                    ex.GetType().ToString(),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error
+                    );
+            }
+        }
+
+        /// <summary>
+        /// Get the URI for reporting application issues
+        /// </summary>
+        /// <returns>URI for reporting issues</returns>
+        /// <exception cref="System.NullReferenceException">Thrown when resource for issue URI not found</exception>
+        private Uri getIssueURI()
+        {
+            var res = Application.Current.TryFindResource("UriGitHubIssues");
+
+            if (res == null)
+            {
+                throw new NullReferenceException("URI to report issues not found");
+            }
+            else if (!(res is string || res is Uri))
+            {
+                throw new NotSupportedException(
+                    String.Format(
+                        "Expected URI of type {0}, recieved type {1}",
+                        arg0: "System.Uri",
+                        arg1: res.GetType()
+                        )
+                    );
+            }
+
+            return res as Uri;
         }
 
         private void MenuItem_File_AppData_Click(object sender, RoutedEventArgs e)
