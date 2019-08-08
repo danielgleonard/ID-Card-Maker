@@ -165,7 +165,7 @@ namespace ID_Card_Maker
                 MessageBox.Show("Exception caught during printer choosing.\r\n\r\n" +
                                 ex.Message +
                                 "\r\nCurrent printer in Properties.Resources: " +
-                                Properties.Resources.PrinterName + ".",
+                                Properties.Settings.Default.PrinterName + ".",
                                 "Exception",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Error);
