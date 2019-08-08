@@ -66,7 +66,7 @@ namespace ID_Card_Maker
             }
 
             ComboBox_DeviceChooser.SelectedIndex = 0; // default
-            FinalFrame = new VideoCaptureDevice();
+            //FinalFrame = new VideoCaptureDevice();
         }
 
         /// <summary>
@@ -80,6 +80,7 @@ namespace ID_Card_Maker
             }
             FinalFrame = new VideoCaptureDevice(CaptureDevice[ComboBox_DeviceChooser.SelectedIndex].MonikerString); // specified web cam and its filter moniker string
             FinalFrame.NewFrame += frameHandler; // click button event is fired, 
+            FinalFrame.VideoSourceError += new VideoSourceErrorEventHandler(videoSource_Error);
             anchorPoint = new System.Drawing.Point();
             selectionRectangle.Visibility = Visibility.Hidden;
 
@@ -306,6 +307,18 @@ namespace ID_Card_Maker
             //((MainWindow)Application.Current.MainWindow).Input_Photo.Source = image;
             Photo.Source = image;
             Image_Previewer.Source = image;
+        }
+
+        void videoSource_Error(object sender, AForge.Video.VideoSourceErrorEventArgs eventArgs)
+        {
+#if DEBUG
+            MessageBox.Show(
+                eventArgs.Description,
+                eventArgs.GetType().ToString(),
+                MessageBoxButton.OK,
+                MessageBoxImage.Error
+                );
+#endif
         }
     }
 

@@ -36,7 +36,7 @@
                 </local:Bio.Birthday>
 
                 <local:Bio.ID_Number>
-                    <sys:Int32>123456</sys:Int32>
+                    <sys:UInt32>123456</sys:UInt32>
                 </local:Bio.ID_Number>
 
                 <local:Bio.HairColor>

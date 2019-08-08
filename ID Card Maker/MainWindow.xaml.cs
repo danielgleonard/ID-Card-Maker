@@ -424,6 +424,6 @@ namespace ID_Card_Maker
         public int HairColor { get; set; }
         public int EyeColor { get; set; }
         public int Sex { get; set; }
-        public int ID_Number { get; set; }
+        public uint ID_Number { get; set; }
     }
 }
