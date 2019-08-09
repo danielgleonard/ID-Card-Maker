@@ -53,7 +53,6 @@
                     <BitmapImage UriSource="Resources/img/unkown person.png"/>
                 </local:Bio.Photo>
             </local:Bio>
-            <sys:String x:Key="ReverseCardTitle">Authorized Firearm Holder</sys:String>
 
             <local:Strings x:Key="HairColors">
                 <sys:String>Bald</sys:String>

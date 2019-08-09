@@ -21,7 +21,7 @@
             <ComboBox x:Name="ComboBox_DeviceChooser" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top"/>
             <Button x:Name="Button_DeviceChooser" Grid.Row="0" Grid.Column="1" Content="Open Camera Feed" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Top" Click="Button_DeviceChooser_Click"/>
         </Grid>
-        <Image x:Name="Image_Previewer" Grid.Row="1" MinHeight="50" Height="Auto" MaxHeight="700" Margin="10,0" Width="Auto" MaxWidth="700" VerticalAlignment="Top" MouseMove="Image_Previewer_MouseMove" MouseLeftButtonDown="Image_Previewer_MouseLeftButtonDown" MouseLeftButtonUp="Image_Previewer_MouseLeftButtonUp" Stretch="None"/>
+        <Image x:Name="Image_Previewer" Grid.Row="1" MinHeight="50" Height="480" MaxHeight="720" Margin="10,0" Width="Auto" MaxWidth="700" VerticalAlignment="Top" MouseMove="Image_Previewer_MouseMove" MouseLeftButtonDown="Image_Previewer_MouseLeftButtonDown" MouseLeftButtonUp="Image_Previewer_MouseLeftButtonUp" Stretch="None"/>
         <Canvas x:Name="BackPanel" Grid.Row="1" Height="{Binding Source.Height, ElementName=Image_Previewer, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Margin="{Binding Margin, ElementName=Image_Previewer}" Width="{Binding Source.Width, ElementName=Image_Previewer, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Cursor="Cross" VerticalAlignment="Top">
             <Rectangle x:Name="selectionRectangle" Stroke="LightBlue" Fill="#220000FF" Visibility="Collapsed" />
         </Canvas>

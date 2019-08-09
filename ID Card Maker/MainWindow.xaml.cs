@@ -33,6 +33,7 @@ namespace ID_Card_Maker
         ReversePreview cardPreviewerReverse = new ReversePreview();
 
 
+
         /// <summary>
         /// Constructor for <code>MainWindow</code>
         /// </summary>
@@ -398,6 +399,13 @@ namespace ID_Card_Maker
         private void MenuItem_Settings_PrinterName_Click(object sender, RoutedEventArgs e)
         {
             SettingUpdater settingUpdaterWindow = new SettingUpdater("PrinterName", "Printer Name");
+            settingUpdaterWindow.Owner = this;
+            settingUpdaterWindow.ShowDialog();
+        }
+
+        private void MenuItem_Settings_ReverseTitle_Click(object sender, RoutedEventArgs e)
+        {
+            SettingUpdater settingUpdaterWindow = new SettingUpdater("ReverseTitle", "Reverse Header");
             settingUpdaterWindow.Owner = this;
             settingUpdaterWindow.ShowDialog();
         }

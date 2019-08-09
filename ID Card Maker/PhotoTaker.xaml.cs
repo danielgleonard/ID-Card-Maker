@@ -79,6 +79,34 @@ namespace ID_Card_Maker
                 return;
             }
             FinalFrame = new VideoCaptureDevice(CaptureDevice[ComboBox_DeviceChooser.SelectedIndex].MonikerString); // specified web cam and its filter moniker string
+
+            try
+            {
+                //Check if the video device provides a list of supported resolutions
+                if (FinalFrame.VideoCapabilities.Length > 0)
+                {
+                    string highestSolution = "0;0";
+                    //Search for the highest resolution
+                    for (int i = 0; i < FinalFrame.VideoCapabilities.Length; i++)
+                    {
+                        if (FinalFrame.VideoCapabilities[i].FrameSize.Width > Convert.ToInt32(highestSolution.Split(';')[0]))
+                            highestSolution = FinalFrame.VideoCapabilities[i].FrameSize.Width.ToString() + ";" + i.ToString();
+                    }
+                    //Set the highest resolution as active
+                    highestSolution = "640;0";
+                    FinalFrame.VideoResolution = FinalFrame.VideoCapabilities[Convert.ToInt32(highestSolution.Split(';')[1])];
+                }
+            }
+            catch (Exception ex) {
+#if DEBUG
+                MessageBox.Show("Exception caught during resolution discovery.\r\n\r\n" +
+                                ex.Message,
+                                ex.GetType().ToString(),
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+#endif
+            }
+
             FinalFrame.NewFrame += frameHandler; // click button event is fired, 
             FinalFrame.VideoSourceError += new VideoSourceErrorEventHandler(videoSource_Error);
             anchorPoint = new System.Drawing.Point();

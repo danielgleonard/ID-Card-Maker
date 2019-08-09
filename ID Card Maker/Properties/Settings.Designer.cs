@@ -58,5 +58,17 @@ namespace ID_Card_Maker.Properties {
                 this["PrinterName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Authorized Firearm Holder")]
+        public string ReverseTitle {
+            get {
+                return ((string)(this["ReverseTitle"]));
+            }
+            set {
+                this["ReverseTitle"] = value;
+            }
+        }
     }
 }

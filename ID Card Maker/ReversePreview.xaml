@@ -55,7 +55,7 @@
 
         <TextBlock x:Name="TitleBar"    Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" TextWrapping="WrapWithOverflow" TextAlignment="Center" FontSize="{DynamicResource FontSizeTitleBar}">
             <TextBlock.Text>
-                <Binding Mode="OneWay" Source="{StaticResource ReverseCardTitle}"/>
+                <Binding Mode="OneWay" Source="{x:Static properties:Settings.Default}" Path="ReverseTitle" />
             </TextBlock.Text>
         </TextBlock>
 
@@ -81,7 +81,7 @@
         <Label x:Name="Weight_Label"    Grid.Row="4" Content="Weight"  Style="{StaticResource labelStyle}" />
         <TextBlock x:Name="Weight"  Grid.Row="4" AutomationProperties.LabeledBy="{Binding ElementName=Weight_Label, Mode=OneWay}" Style="{StaticResource textblockStyle}">
             <TextBlock.Text>
-                <MultiBinding StringFormat="{}{0} lbs.">
+                <MultiBinding StringFormat="{}{0:#,#} lbs.">
                     <Binding Source="{StaticResource person}" Path="Weight" UpdateSourceTrigger="PropertyChanged" PresentationTraceSources.TraceLevel="High" />
                 </MultiBinding>
             </TextBlock.Text>

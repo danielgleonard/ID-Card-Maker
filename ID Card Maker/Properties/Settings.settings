@@ -11,5 +11,8 @@
     <Setting Name="PrinterName" Type="System.String" Scope="User">
       <Value Profile="(Default)">ID Maker Zenius</Value>
     </Setting>
+    <Setting Name="ReverseTitle" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Authorized Firearm Holder</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
